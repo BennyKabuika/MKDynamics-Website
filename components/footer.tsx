@@ -94,7 +94,7 @@ export default function Footer() {
           <h4 className="text-lg font-semibold mb-12">Office hours</h4>
           <p className="text-sm text-gray-500">
             Monday - Friday <br />
-            <span className="font-bold text-white">8 AM - 4 AM</span>
+            <span className="font-bold text-white">8 AM - 4 PM</span>
           </p>
         </div>
       </div>
