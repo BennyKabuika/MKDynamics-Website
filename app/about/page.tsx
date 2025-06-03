@@ -2,13 +2,19 @@
 
 import Navbar from "@/components/Navbar/Navbar";
 import {MovingLetters} from "@/app/animations/MovingLetters";
-import { World } from "../animations/globe";
 import ButtonDefault from "@/components/Button/ButtonDefault";
 import CarousselImage from "@/components/carousselImage";
 import { backgroundcolors, colors } from '@/app/color';
 import Footer from "@/components/footer";
 import { Timeline } from "../animations/timeline";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+
+
+
+const World = dynamic(() => import("../animations/globe").then(mod => mod.World), {
+  ssr: false,
+});
 
 const globeConfig = {
   globeColor: "#051654",
