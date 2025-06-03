@@ -113,7 +113,7 @@ export default function ContactForm() {
       
       <div className="flex-1 relative min-h-[350px]">
         <Image
-          src="/image9.jpeg"
+          src="/image8.jpeg"
           alt="Contact"
           fill
           className="object-cover w-full h-full"
