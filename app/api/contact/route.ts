@@ -14,7 +14,6 @@ export async function POST(req: Request) {
     },
   });
 
-  // Mail pour TOI (le destinataire)
   const mailToMe = {
     from: process.env.GMAIL_USER,
     to: process.env.GMAIL_USER,

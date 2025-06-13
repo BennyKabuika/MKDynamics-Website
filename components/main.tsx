@@ -13,7 +13,7 @@ export default function Main() {
   const [activeTab, setActiveTab] = useState<'mission' | 'vision'>('mission');
 
   const missionText =
-    'Our mission at MKDYNAMICS is to provide comprehensive digital solutions — from web and app development to design and cybersecurity — empowering businesses to thrive with innovative, all-in-one IT services.';
+    'Benny at MKDYNAMICS is to provide comprehensive digital solutions — from web and app development to design and cybersecurity — empowering businesses to thrive with innovative, all-in-one IT services.';
 
   const visionText =
     'To be a leading digital partner recognized for delivering innovative, secure, and comprehensive IT solutions that empower businesses worldwide to grow confidently in a fast-evolving digital landscape.';
