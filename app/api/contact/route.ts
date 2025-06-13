@@ -1,4 +1,4 @@
-// app/api/contact/route.ts
+
 
 import { NextResponse } from 'next/server';
 import nodemailer from "nodemailer";
@@ -7,16 +7,18 @@ export async function POST(req: Request) {
   const { name, email, message } = await req.json();
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtpout.secureserver.net',
+    port: 465,
+    secure: true,
     auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
+      user: process.env.GODADDY_USER,
+      pass: process.env.GODADDY_PASS,
     },
   });
 
   const mailToMe = {
-    from: process.env.GMAIL_USER,
-    to: process.env.GMAIL_USER,
+    from: process.env.GODADDY_USER,
+    to: process.env.GODADDY_USER,
     subject: `📬 Nouveau message de ${name}`,
     text: `
       Nom: ${name}
@@ -60,9 +62,9 @@ export async function POST(req: Request) {
   `,
   };
 
-  // Mail de confirmation pour l'expéditeur (le visiteur)
+
   const mailToSender = {
-  from: process.env.GMAIL_USER,
+  from: process.env.GODADDY_USER,
   to: email,
   subject: "MKDynamics – Acknowledgment of Receipt",
   html: `
@@ -109,7 +111,6 @@ export async function POST(req: Request) {
 };
 
   try {
-    // Envoie les 2 mails en parallèle
     await Promise.all([
       transporter.sendMail(mailToMe),
       transporter.sendMail(mailToSender),
