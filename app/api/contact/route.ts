@@ -8,8 +8,8 @@ export async function POST(req: Request) {
 
   const transporter = nodemailer.createTransport({
     host: 'smtpout.secureserver.net',
-    port: 465,
-    secure: true,
+    port: 587,
+    secure: false,
     auth: {
       user: process.env.GODADDY_USER,
       pass: process.env.GODADDY_PASS,
