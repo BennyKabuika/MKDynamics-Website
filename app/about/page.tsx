@@ -315,7 +315,7 @@ export default function About() {
       {/* Section 3 : Timeline */}
       <section className="w-full py-16 bg-white" style={{ background: backgroundcolors.Quaternary }}>
         <h2 className="text-sm font-normal mb-6 text-center" style={{color : colors.Primary}}>
-          .OUR VALUES ?
+          .OUR VALUES
         </h2>
         <Timeline data={timelineData} />
       </section>
