@@ -104,7 +104,7 @@ export default function ContactForm() {
               className="w-24 h-24 rounded-full flex items-center justify-center"
               style={{ background: backgroundcolors.Tertiary }}
             >
-              <Image src="/logo.png" alt="Logo" width={64} height={64} />
+              <Image src="/logo2.png" alt="Logo" width={200} height={200} />
             </div>
           </div>
         </div>

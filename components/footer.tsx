@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { backgroundcolors, colors } from '@/app/color';
 import  ButtonDefault  from '../components/Button/ButtonDefault'; 
-import logo from '@/public/logo.png'; 
+import logo from '@/public/logo2.png'; 
 import { useRouter } from 'next/navigation';
 
 export default function Footer() {
@@ -21,7 +21,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
         {/* Colonne 1 - Logo et description */}
         <div>
-          <Image src={logo} alt="Logo" width={150} height={50} className="mb-12" />
+          <Image src={logo} alt="Logo" width={650} height={550} className="mb-12" />
           <p className="text-sm mb-12 text-gray-500">
             In today’s fast-moving tech landscape, MKDynamics partners with you to deliver tailored IT
             solutions that protect, connect, and empower your business.

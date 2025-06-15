@@ -31,12 +31,105 @@ const globeData = [
     endLng: -74.01,
     arcAlt: 0.2,
     color: "#87CEEB"
-  }
+  },
+  {
+    order: 2,
+    startLat: 50.85,
+    startLng: 6.35,
+    endLat: 35.68,
+    endLng: 139.76,
+    arcAlt: 0.2,
+    color: "#87CEEB"
+  },
+  {
+    order: 3,
+    startLat: 51.51,   // London
+    startLng: -0.13,
+    endLat: -33.87,    // Sydney
+    endLng: 151.21,
+    arcAlt: 0.2,
+    color: "#87CEEB"
+  },
+  {
+    order: 4,
+    startLat: 40.41,   // Madrid
+    startLng: -3.70,
+    endLat: 55.75,     // Moscow
+    endLng: 37.62,
+    arcAlt: 0.2,
+    color: "#87CEEB"
+  },
+  {
+    order: 5,
+    startLat: 52.52,   // Berlin
+    startLng: 13.40,
+    endLat: -23.55,    // São Paulo
+    endLng: -46.63,
+    arcAlt: 0.2,
+    color: "#87CEEB"
+  },
+  {
+    order: 6,
+    startLat: 34.05,   // Los Angeles
+    startLng: -118.24,
+    endLat: 1.29,      // Singapore
+    endLng: 103.85,
+    arcAlt: 0.2,
+    color: "#87CEEB"
+  },
+  {
+    order: 7,
+    startLat: 19.43,   // Mexico City
+    startLng: -99.13,
+    endLat: 55.86,     // Beijing
+    endLng: 4.35,
+    arcAlt: 0.2,
+    color: "#87CEEB"
+  },
+  {
+    order: 8,
+    startLat: 28.61,   // New Delhi
+    startLng: 77.20,
+    endLat: 59.93,     // Saint Petersburg
+    endLng: 30.33,
+    arcAlt: 0.2,
+    color: "#87CEEB"
+  },
+  {
+    order: 9,
+    startLat: -26.20,  // Johannesburg
+    startLng: 28.04,
+    endLat: 35.68,     // Tokyo
+    endLng: 139.76,
+    arcAlt: 0.2,
+    color: "#87CEEB"
+  },
+  {
+    order: 10,
+    startLat: -33.92,  // Cape Town
+    startLng: 18.42,
+    endLat: 37.77,     // San Francisco
+    endLng: -122.42,
+    arcAlt: 0.2,
+    color: "#87CEEB"
+  },
+  {
+    order: 11, // Rome → Nairobi (Europe → Afrique)
+    startLat: 41.90, startLng: 12.50,
+    endLat: -1.29, endLng: 36.82,
+    arcAlt: 0.2, color: "#87CEEB"
+  },
+  {
+    order: 12, // Ottawa → Le Caire (Amérique du Nord → Afrique)
+    startLat: 45.42, startLng: -75.69,
+    endLat: 30.04, endLng: 31.24,
+    arcAlt: 0.2, color: "#87CEEB"
+  },
 ];
 
 const timelineData = [
   {
-    title: "M - Motivation",
+    title: "Motivation",
     content: (
       <p>
         Motivation is the driving force behind every member of our team. At MKDYNAMICS, we believe
@@ -48,7 +141,7 @@ const timelineData = [
     image: "/image12.jpeg",
   },
   {
-    title: "K – Knowledge",
+    title: "Knowledge",
     content: (
       <p>
         Knowledge is the foundation of our expertise. We continuously invest in learning,
@@ -60,7 +153,7 @@ const timelineData = [
     image: "/image8.jpeg",
   },
   {
-    title: "D – Dedication",
+    title: "Dedication",
     content: (
       <p>
         Our dedication is shown through full commitment to every project. More than a service, we
@@ -72,7 +165,7 @@ const timelineData = [
     image: "/image9.jpeg",
   },
   {
-    title: "Y – Youthful Energy",
+    title: "Youthful Energy",
     content: (
       <p>
         We foster a youthful, bold mindset focused on the future. This energy pushes us to challenge
@@ -83,7 +176,7 @@ const timelineData = [
     image: "/image10.jpeg",
   },
   {
-    title: "N – Network",
+    title: "Network",
     content: (
       <p>
         We believe in the power of connections. Our strong network of partners, clients, and experts
@@ -95,7 +188,7 @@ const timelineData = [
     image: "/image7.jpeg",
   },
   {
-    title: "A – Agility",
+    title: "Agility",
     content: (
       <p>
         In a fast-changing world, agility is a necessity. We&apos;ve adopted flexible and adaptive
@@ -106,7 +199,7 @@ const timelineData = [
     image: "/image11.jpeg",
   },
   {
-    title: "M – Mission",
+    title: "Mission",
     content: (
       <p>
         Our mission is clear: to create lasting, positive impact for our clients. Every solution we
@@ -117,7 +210,7 @@ const timelineData = [
     image: "/image12.jpeg",
   },
   {
-    title: "I – Integrity",
+    title: "Integrity",
     content: (
       <p>
         Integrity guides every action we take. We place ethics, transparency, and responsibility at
@@ -128,7 +221,7 @@ const timelineData = [
     image: "/image8.jpeg",
   },
   {
-    title: "C – Creativity",
+    title: "Creativity",
     content: (
       <p>
         Creativity is our core strength. We tackle every challenge with fresh perspectives, bold
@@ -139,7 +232,7 @@ const timelineData = [
     image: "/image9.jpeg",
   },
   {
-    title: "S – Synergy",
+    title: "Synergy",
     content: (
       <p>
         We believe the whole is greater than the sum of its parts. Synergy is the art of aligning
@@ -221,8 +314,8 @@ export default function About() {
       <CarousselImage />
       {/* Section 3 : Timeline */}
       <section className="w-full py-16 bg-white" style={{ background: backgroundcolors.Quaternary }}>
-        <h2 className="text-sm font-normal mb-8 text-center" style={{color : colors.Primary}}>
-          .HOW IT WORKS ?
+        <h2 className="text-sm font-normal mb-6 text-center" style={{color : colors.Primary}}>
+          .OUR VALUES ?
         </h2>
         <Timeline data={timelineData} />
       </section>

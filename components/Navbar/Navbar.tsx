@@ -37,7 +37,7 @@ export default function Navbar() {
       <div className="mx-auto flex items-center justify-between h-32 px-4 max-w-7xl">
         {/* Logo */}
         <div className="flex items-center">
-          <Image src="/logo.png" alt="Logo" width={60} height={60} />
+          <Image src="/logo2.png" alt="Logo" width={220} height={220} />
         </div>
 
         {/* Desktop menu */}
