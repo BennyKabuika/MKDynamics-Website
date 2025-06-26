@@ -31,12 +31,6 @@ export async function POST(req: Request) {
       <div style="max-width:600px; margin:auto; background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
         
         <!-- Header -->
-        <div style="background: linear-gradient(135deg, #051654, #0b1f84); padding: 20px; text-align: center;">
-          <img src="https://mkdynamics.be/wp-content/uploads/2024/03/2.png"
-               alt="MKDynamics Logo"
-               style="height: 50px; margin-bottom: 10px;" />
-          
-        </div>
 
         <!-- Body -->
         <div style="padding: 20px; color: #333;">
@@ -64,9 +58,9 @@ export async function POST(req: Request) {
 
 
   const mailToSender = {
-  from: process.env.GODADDY_USER,
+  from: `"MKDYNAMICS Contact" <${process.env.GODADDY_USER}>`,
   to: email,
-  subject: "MKDynamics – Acknowledgment of Receipt",
+  subject: "Thanks for your submission !",
   html: `
     <div style="font-family: 'Poppins', sans-serif; padding: 40px 20px; background: #f2f4f6;">
       <div style="max-width: 600px; margin: auto; background: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">

@@ -1,14 +1,20 @@
+"use client"
 import Navbar from "@/components/Navbar/Navbar";
 import { MovingLetters } from "@/app/animations/MovingLetters";
 import { backgroundcolors, colors } from '@/app/color';
 import Footer from "@/components/footer";
 import { Opportunity } from "../../function";
 import Image from "next/image";
+import ButtonDefault from "@/components/Button/ButtonDefault";
+import { ArrowRight } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function About() {
-  // On prend la première opportunité de type "design" (adapte selon ta structure)
+  const router = useRouter();
   const design = Opportunity.find((item) => item.type?.toLowerCase() === "design") || Opportunity[0];
-
+  const ApplyCV = () => {
+    router.push('/resumecv');
+  };
   return (
     <>
       <Navbar />
@@ -22,10 +28,8 @@ export default function About() {
         </p>
       </section>
 
-      {/* Bloc d'information */}
       <section className="w-full py-16 px-4" style={{ background: backgroundcolors.Quaternary }}>
         <div className="max-w-4xl mx-auto p-8">
-          {/* Type & Status */}
           <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
             <div>
               <span className="text-sm font-medium text-gray-500 uppercase" style={{color : colors.Primary}}>Type</span>
@@ -37,15 +41,12 @@ export default function About() {
               <div className={`text-lg font-light ${design.status === "Available" ? "text-green-600" : "text-red-600"}`}>{design.status}</div>
             </div>
           </div>
-          {/* Séparateur */}
+
           <div className="border-b border-gray-200 my-6" />
-          {/* Title */}
           <h1 className="text-3xl md:text-5xl font-medium mb-6 pt-10">{design.title}</h1>
-          {/* Description */}
           <p className="text-gray-500 text-lg mb-10 font-light">
             At MKDynamics, design is more than aesthetics — it&apos;s how we solve problems, tell stories, and elevate user experiences. Whether you&apos;re into UI/UX, branding, or digital illustration, we give creative minds the space to explore, learn, and shape real-world products. As a design intern, you&apos;ll work on live projects, collaborate with developers and strategists, and bring bold ideas to life.
           </p>
-          {/* Why recruit */}
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Why do we recruit design profiles?</h2>
           <p className="text-gray-500 text-lg mb-10 font-light">
             At MKDynamics, design is at the heart of every digital solution. A powerful user interface, a strong brand identity, or a thoughtful user journey can make the difference between average and exceptional. We recruit design interns and creatives to bring fresh perspectives, challenge conventions, and craft visual experiences that connect with real users. By integrating design from the ground up, we ensure our solutions aren’t just functional — they’re beautiful, intuitive, and impactful.
@@ -59,7 +60,6 @@ export default function About() {
               <Image src="/image3.jpeg" alt="Design 2" fill className="object-cover rounded-2xl" />
             </div>
           </div>
-          {/* Recommended Profile */}
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Recommended Profile for a Graphic Designer</h2>
           <ul className="list-disc pl-6 text-gray-700 mb-10 space-y-2 font-light">
             <li>Student studying graphic design, visual arts, communication design, or a related creative field</li>
@@ -70,7 +70,6 @@ export default function About() {
             <li>Open to feedback and able to work well in a team</li>
             <li>Available for diverse tasks (branding, print/digital media, social networks…)</li>
           </ul>
-          {/* Recommended Skills */}
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Recommended Skills</h2>
           <ul className="list-disc pl-6 text-gray-700 mb-10 space-y-2 ">
             <li><b>Technical skills (hard skills)</b></li>
@@ -98,7 +97,6 @@ export default function About() {
               <li>Willingness to learn continuously and improve</li>
             </ul>
           </ul>
-          {/* Extras */}
           <h2 className="text-2xl md:text-3xl font-bold mb-4">Extras to Boost Your Profile</h2>
           <ul className="list-disc pl-6 text-gray-700 space-y-2">
             <li>Online portfolio (Behance, Dribbble, personal website)</li>
@@ -107,6 +105,14 @@ export default function About() {
             <li>Awareness of current graphic design trends</li>
           </ul>
         </div>
+        <div className="flex items-center justify-center mt-20">
+          <ButtonDefault
+                  label="Apply now !"
+                  onClick={(ApplyCV)}
+                  icon={<ArrowRight color="white" size={20} />}
+                />
+        </div>
+        
       </section>
       <Footer />
     </>

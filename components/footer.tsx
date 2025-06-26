@@ -18,8 +18,8 @@ export default function Footer() {
 
   return (
     <footer className="text-white py-16 px-8 md:px-16" style={{ backgroundColor: backgroundcolors.Secondary }}>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-        {/* Colonne 1 - Logo et description */}
+      <div className="max-w-7xl mx-auto grid grids-cols-1 md:grid-cols-4 gap-12 mb-12">
+
         <div>
           <Image src={logo} alt="Logo" width={650} height={550} className="mb-12" />
           <p className="text-sm mb-12 text-gray-500">
@@ -29,7 +29,7 @@ export default function Footer() {
           <ButtonDefault label="Get In Touch" onClick={(NavigateToContact)} />
         </div>
 
-        {/* Colonne 2 - Get in Touch */}
+
         <div>
           <h4 className="text-lg font-semibold mb-12">Get in touch</h4>
           <div className="mb-4">
@@ -50,19 +50,19 @@ export default function Footer() {
           <div className="border-t border-gray-800 my-4"></div>
           <div>
             <a
-              href="https://www.google.com/maps?q=Avenue+Jean+de+Bologne+9,+1020+Brussels"
+              href="https://www.google.com/maps?q=Assesteenweg+116+A+1740+Ternat"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 hover:underline"
             >
               <MapPin size={20} style={{color : colors.Primary}} />
-              Brussels, BE
+              Ternat, BE
             </a>
-            <p className="text-xs text-gray-500 mt-1">Avenue Jean de Bologne 9, 1020 Brussels</p>
+            <p className="text-xs text-gray-500 mt-1">Assesteenweg 116   Boîte A 1740 Ternat</p>
           </div>
         </div>
 
-        {/* Colonne 3 - Quick Links */}
+
         <div>
           <h4 className="text-lg font-semibold mb-12">Quick links</h4>
           <ul className="space-y-4 text-sm" >
@@ -89,7 +89,7 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Colonne 4 - Office Hours */}
+  
         <div>
           <h4 className="text-lg font-semibold mb-12">Office hours</h4>
           <p className="text-sm text-gray-500">
@@ -99,7 +99,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Ligne de séparation */}
       <div className="border-t border-gray-800 pt-6">
         <p className="text-sm text-left text-gray-300">
           © MKDYNAMICS 2025 All Rights Reserved

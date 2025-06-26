@@ -99,6 +99,7 @@ export default function Navbar() {
                 { href: '/faq', label: 'FAQ' },
                 { href: '/servicess', label: 'Service' },
                 { href: '/Opportunity', label: 'Opportunity' },
+                { href: '/resumecv', label: 'Apply now' },
               ].map(({ href, label }) => (
                 <Link
                   key={href}

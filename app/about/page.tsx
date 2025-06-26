@@ -268,7 +268,6 @@ export default function About() {
 
       
       <section className="w-full flex flex-col md:flex-row items-stretch justify-center py-20 gap-8" style={{ background: backgroundcolors.Quaternary }}>
-        {/* Partie gauche */}
         <div className="flex-1 flex flex-col items-start justify-center px-8">
           <span className="text-sm font-normal mb-12" style={{color : colors.Primary}}>.ABOUT OUR COMPANY</span>
           <h2 className="text-5xl md:text-6xl font-normal mb-6">
@@ -287,19 +286,16 @@ export default function About() {
             </div>
           </div>
         </div>
-        {/* Partie droite */}
         <div className="flex-1 flex flex-col justify-start px-8 gap-8">
           <div>
             <h3 className="text-2xl font-normal mb-2">Our mission</h3>
             <p className="text-gray-400">
-              {/* Remplace ce texte par ta mission */}
               Our mission at MKDYNAMICS is to provide comprehensive digital solutions — from web and app development to design and cybersecurity — empowering businesses to thrive with innovative, all-in-one IT services.
             </p>
           </div>
           <div>
             <h3 className="text-2xl font-normal mb-2">Our vision</h3>
             <p className="text-gray-400">
-              {/* Remplace ce texte par ta vision */}
               To be a leading digital partner recognized for delivering innovative, secure, and comprehensive IT solutions that empower businesses worldwide to grow confidently in a fast-evolving digital landscape.
             </p>
           </div>
@@ -308,19 +304,14 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      {/* Section 3 : Carrousel */}
       
       <CarousselImage />
-      {/* Section 3 : Timeline */}
       <section className="w-full py-16 bg-white" style={{ background: backgroundcolors.Quaternary }}>
         <h2 className="text-sm font-normal mb-6 text-center" style={{color : colors.Primary}}>
           .OUR VALUES
         </h2>
         <Timeline data={timelineData} />
       </section>
-        
-      {/* Section 4 : Footer */}
       <Footer />
       
     </>
