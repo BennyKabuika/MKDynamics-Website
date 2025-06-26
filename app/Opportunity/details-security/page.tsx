@@ -116,14 +116,15 @@ export default function About() {
             <li>Knowledge of software development lifecycle for web app security insight</li>
           </ul>
         </div>
-      </section>
-      <div className="flex items-center justify-center mt-20">
+        <div className="flex items-center justify-center mt-20">
         <ButtonDefault
                 label="Apply now !"
                 onClick={(ApplyCV)}
                 icon={<ArrowRight color="white" size={20} />}
               />
         </div>
+      </section>
+      
       <Footer />
     </>
   );
