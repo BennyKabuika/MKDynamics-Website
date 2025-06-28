@@ -8,7 +8,7 @@ import Image from "next/image";
 import ButtonDefault from "@/components/Button/ButtonDefault";
 import { useRouter } from "next/navigation";
 
-export default function About() {
+export default function SecurityConsultancy() {
   
   const design = Services.find((item) => item.title?.toLowerCase() === "security") || Services[3];
     const router = useRouter();

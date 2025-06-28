@@ -8,7 +8,7 @@ import Image from "next/image";
 import ButtonDefault from "@/components/Button/ButtonDefault";
 import { useRouter } from "next/navigation";
 
-export default function About() {
+export default function MobileApp() {
   
   const design = Services.find((item) => item.title?.toLowerCase() === "mobileapp") || Services[1];
     const router = useRouter();

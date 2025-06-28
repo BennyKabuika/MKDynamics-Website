@@ -8,7 +8,7 @@ import Image from "next/image";
 import ButtonDefault from "@/components/Button/ButtonDefault";
 import { useRouter } from "next/navigation";
 
-export default function About() {
+export default function WebsiteDevelopment() {
   // On prend la première opportunité de type "design" (adapte selon ta structure)
   const design = Services.find((item) => item.title?.toLowerCase() === "design") || Services[0];
     const router = useRouter();

@@ -47,7 +47,7 @@ export default function Main() {
         </motion.div>
 
         <motion.div variants={fadeIn}>
-          <h1 className="text-6xl md:text-5xl font-normal leading-snug pb-24">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-normal leading-snug pb-24 max-w-full ">
             MKDynamics is a trusted security firm specializing in comprehensive IT and cybersecurity solutions.
           </h1>
         </motion.div>

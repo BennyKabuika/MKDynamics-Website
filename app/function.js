@@ -40,6 +40,17 @@ export const Services = [
         },
         
     },
+    {
+        id: 5,
+        title: 'Automation',
+        description: 'Streamline your work with smart, time-saving workflows.',
+        icon: '/automation.png',
+        button: {
+            text: 'Read More',
+            link: '/servicess/automation',
+        },
+        
+    },
 ]
 export const Opportunity = [
     {

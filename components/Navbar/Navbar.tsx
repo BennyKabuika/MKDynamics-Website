@@ -77,8 +77,6 @@ export default function Navbar() {
                 <ChevronDown size={18} />
               </span>
             </button>
-
-            {/* Toujours rendu, transition avec opacity + scale + pointer-events */}
             <div
               className={`
                 absolute left-1/2 -translate-x-1/2 mt-3 w-96 bg-white rounded-lg py-4 px-6 flex flex-col gap-4 z-50
@@ -113,7 +111,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop button */}
         <div className="hidden md:block">
           <ButtonDefault
             label="Get Started"
@@ -122,15 +119,12 @@ export default function Navbar() {
           />
         </div>
 
-        {/* Mobile menu icon */}
         <div className="md:hidden">
           <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
-
-      {/* Mobile dropdown menu */}
       {mobileMenuOpen && (
         <div className="md:hidden px-6 pb-6 flex flex-col gap-4 bg-white">
           {[
@@ -140,6 +134,7 @@ export default function Navbar() {
             { href: '/contact', label: 'Contact' },
             { href: '/faq', label: 'FAQ' },
             { href: '/servicess', label: 'Service' },
+            { href: '/resumecv', label: 'Apply now' },
           ].map(({ href, label }) => (
             <Link
               key={href}
