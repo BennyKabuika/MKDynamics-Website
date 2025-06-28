@@ -5,6 +5,7 @@ import OurServices from '@/components/ourServices';
 import CarousselImage from '@/components/carousselImage';
 import OurOpportunity from '@/components/ourOpportunity';
 import Footer from '@/components/footer';
+import { HeroParallaxDemo } from '@/components/showRealisations';
 
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <OurServices />
       <CarousselImage />
       <OurOpportunity />
+      <HeroParallaxDemo />
       <Footer />
     </>
   );

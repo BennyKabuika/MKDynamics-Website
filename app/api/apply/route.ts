@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from "nodemailer";
 
-// Pour gérer FormData (fichiers), on utilise req.formData()
 export async function POST(req: Request) {
   const formData = await req.formData();
 
