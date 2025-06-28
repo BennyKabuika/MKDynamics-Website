@@ -101,7 +101,7 @@ export default function Footer() {
 
       <div className="border-t border-gray-800 pt-6">
         <p className="text-sm text-left text-gray-300">
-          © MKDYNAMICS 2025 All Rights Reserved
+          © MKDYNAMICS 2023 All Rights Reserved
         </p>
       </div>
     </footer>
