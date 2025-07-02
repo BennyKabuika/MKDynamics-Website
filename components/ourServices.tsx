@@ -27,7 +27,6 @@ export default function OurServices() {
   return (
     <section className="w-full px-8 md:px-16 py-20 bg-white">
       <div className="max-w-7xl mx-auto">
-        {/* Titres animés et centrés */}
         <motion.div
           className="text-center mb-12"
           initial="hidden"
@@ -42,10 +41,8 @@ export default function OurServices() {
             Different IT Solutions
           </h2>
         </motion.div>
-
-        {/* Cartes carrées */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
-          {Services.map((service, index) => (
+          {Services.slice(0, 3).map((service, index) => (
             <motion.div
               key={service.id}
               className="w-[390px] h-[390px] bg-white border border-gray-100 shadow-sm flex flex-col items-start p-6"
@@ -55,7 +52,6 @@ export default function OurServices() {
               viewport={{ once: true }}
               variants={fadeInUp}
             >
-              {/* Icône */}
               <div className="w-20 h-20 relative mb-12">
                 <Image
                   src={service.icon}
@@ -64,16 +60,12 @@ export default function OurServices() {
                   className="object-cover"
                 />
               </div>
-
-              {/* Contenu */}
               <h3 className="text-2xl font-semibold text-gray-800 mb-2">
                 {service.title}
               </h3>
-
               <p className="text-gray-600 text-lg mb-2 font-light">
                 {service.description}
               </p>
-
               <Link
                 href={service.button.link}
                 className="mt-4 text-black text-sm font-medium hover:no-underline"
@@ -92,7 +84,6 @@ export default function OurServices() {
             >
             <ButtonDefault label="More Services" onClick={(navigateToService)} />
         </motion.div>
-
       </div>
     </section>
   );
