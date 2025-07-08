@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.mkdynamics.be
+
+# Sitemaps
+Sitemap: https://www.mkdynamics.be/sitemap.xml
