@@ -9,40 +9,18 @@ export const metadata: Metadata = {
    metadataBase: new URL("https://www.mkdynamics.be/"),
     title: "MKDynamics - Information Technology Solutions",
     description:
-    "MKDYNAMICS excels in crafting custom software and mobile apps, ensuring digital security through cybersecurity services, transforming businesses with innovation ...",
+    "MKDynamics delivers custom software & mobile apps, cybersecurity, and innovative IT solutions to transform your business.",
     generator: "Next.js",
     applicationName: "MKDynamics",
-    keywords: [
-        "IT services",
-        "Software development",
-        "Cybersecurity solutions",
-        "Digital transformation",
-        "Custom software solutions",
-        "Web development",
-        "Mobile app development",
-        "Cloud computing",
-        "Enterprise software",
-        "Digital security",
-        "Tech innovation",
-        "IT consulting",
-        "Business IT solutions",
-        "Software engineering",
-        "Full-stack development",
-        "App development",
-        "Technology solutions",
-        "System integration",
-        "Digital strategy",
-        "Business technology services",
-    ],
     openGraph: {
         title: "MKDynamics - Information Technology Solutions",
         description:
-      "MKDYNAMICS excels in crafting custom software and mobile apps, ensuring digital security through cybersecurity services, transforming businesses with innovation ...",
+          "MKDynamics delivers custom software & mobile apps, cybersecurity, and innovative IT solutions to transform your business.",
         url: "https://www.mkdynamics.be/",
         siteName: "www.mkdynamics.be",
         images: [
             {
-                url: "./public/logo.png",
+                url: "https://www.mkdynamics.be/logo.png",
                 width: 1200,
                 height: 630,
                 alt: "MKDynamics - Information Technology Solutions",
@@ -55,22 +33,22 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "MKDynamics - Information Technology Solutions",
         description:
-      "MKDYNAMICS excels in crafting custom software and mobile apps, ensuring digital security through cybersecurity services, transforming businesses with innovation ...",
+        "MKDynamics delivers custom software & mobile apps, cybersecurity, and innovative IT solutions to transform your business.",
     },
     robots: {
         index: true,
         follow: true,
         nocache: false,
         googleBot: {
-            index: true,
-            follow: false,
-            noimageindex: true,
-            "max-video-preview": -1,
-            "max-image-preview": "large",
-            "max-snippet": -1,
+          index: true,
+          follow: true,
+          noimageindex: false,
+          "max-video-preview": -1,
+          "max-image-preview": "large",
+          "max-snippet": -1,
         },
+
     },
-    category: "technology",
 };
 
 export default function RootLayout({
@@ -81,6 +59,7 @@ export default function RootLayout({
   return (
     <html lang="en-GB" suppressHydrationWarning>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={poppins.className}>
