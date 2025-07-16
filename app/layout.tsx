@@ -12,15 +12,19 @@ export const metadata: Metadata = {
     "MKDynamics delivers custom software & mobile apps, cybersecurity, and innovative IT solutions to transform your business.",
     generator: "Next.js",
     applicationName: "MKDynamics",
+    authors: [{ name: "MKDynamics", url: "https://www.mkdynamics.be/" }],
+    creator: "MKDynamics",
+    publisher: "MKDynamics",
+    robots: "index, follow",
     openGraph: {
         title: "MKDynamics - Information Technology Solutions",
         description:
           "MKDynamics delivers custom software & mobile apps, cybersecurity, and innovative IT solutions to transform your business.",
         url: "https://www.mkdynamics.be/",
-        siteName: "www.mkdynamics.be",
+        siteName: "MKDynamics",
         images: [
             {
-                url: "https://www.mkdynamics.be/logo.png",
+                url: "https://www.mkdynamics.be/mklogo.png",
                 width: 1200,
                 height: 630,
                 alt: "MKDynamics - Information Technology Solutions",
@@ -30,24 +34,10 @@ export const metadata: Metadata = {
         type: "website",
     },
     twitter: {
-        card: "summary_large_image",
+        card: "summary",
         title: "MKDynamics - Information Technology Solutions",
         description:
         "MKDynamics delivers custom software & mobile apps, cybersecurity, and innovative IT solutions to transform your business.",
-    },
-    robots: {
-        index: true,
-        follow: true,
-        nocache: false,
-        googleBot: {
-          index: true,
-          follow: true,
-          noimageindex: false,
-          "max-video-preview": -1,
-          "max-image-preview": "large",
-          "max-snippet": -1,
-        },
-
     },
 };
 
