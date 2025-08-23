@@ -14,7 +14,7 @@ export const products = [
   },
   {
     title: "Church+",
-    link: "https://churchplus-six.vercel.app",
+    link: "https://www.churchplus.app",
     thumbnail:
       "/screenchurch.jpeg",
   },
