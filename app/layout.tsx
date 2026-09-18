@@ -1,10 +1,21 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Bricolage_Grotesque, Schibsted_Grotesk } from 'next/font/google';
+import localFont from 'next/font/local';
 import { Analytics } from '@vercel/analytics/next';
 
-const sans = Schibsted_Grotesk({ subsets: ['latin'], variable: '--font-sans', display: 'swap', adjustFontFallback: false });
-const display = Bricolage_Grotesque({ subsets: ['latin'], variable: '--font-display', display: 'swap', adjustFontFallback: false });
+// Self-hosted (latin subset) so builds never depend on reaching Google Fonts.
+const sans = localFont({
+  src: './fonts/SchibstedGrotesk-Variable.woff2',
+  weight: '400 900',
+  variable: '--font-sans',
+  display: 'swap',
+});
+const display = localFont({
+  src: './fonts/BricolageGrotesque-Variable.woff2',
+  weight: '200 800',
+  variable: '--font-display',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mkdynamics.be/'),
