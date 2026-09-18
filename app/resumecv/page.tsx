@@ -1,27 +1,40 @@
-"use client";
-import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/footer";
-import ContactForm from "@/components/contactForm";
-import { MovingLetters } from "@/app/animations/MovingLetters";
-import { backgroundcolors, colors } from '@/app/color';
-import { Mail, MapPin, Phone } from "lucide-react";
-import ApplyForm from "@/components/applyForm";
+import Navbar from '@/components/Navbar/Navbar';
+import Footer from '@/components/footer';
+import PageHero from '@/components/site/PageHero';
+import ApplyForm from '@/components/applyForm';
 
 export default function ResumeCV() {
   return (
     <>
       <Navbar />
-      <section
-        className="w-full flex flex-col items-center justify-center py-32"
-        style={{ background: backgroundcolors.Tertiary }}
-      >
-        <MovingLetters text="How to apply ?" />
-        <p className="mt-6 text-lg text-center max-w-2xl font-light text-white">
-          At MKDynamics, we have the IT Solutions you need - innovative, secure and built for your challenges
-        </p>
-      </section>
-      <ApplyForm/>
-      <Footer />
+      <main id="main">
+        <PageHero
+          title={<>Apply to <span className="text-gold">MKDynamics</span>.</>}
+          crumbs={[
+            { href: '/Opportunity', label: 'Careers' },
+            { href: '/resumecv', label: 'Apply' },
+          ]}
+          lede="Send your CV for an internship, a student job or a role. Tell us which field you want to grow in."
+        />
+        <section className="container-mk grid gap-16 py-16 md:grid-cols-12 md:py-24">
+          <div className="md:col-span-7">
+            <ApplyForm />
+          </div>
+          <aside className="md:col-span-4 md:col-start-9">
+            <div className="rounded-3xl bg-paper-2 p-7">
+              <h2 className="text-xl font-semibold">Questions first?</h2>
+              <p className="mt-2 text-ink-2">
+                Email{' '}
+                <a href="mailto:contact@mkdynamics.be" className="text-ink underline">
+                  contact@mkdynamics.be
+                </a>{' '}
+                and we&apos;ll be happy to tell you more.
+              </p>
+            </div>
+          </aside>
+        </section>
+      </main>
+      <Footer cta={false} />
     </>
   );
 }

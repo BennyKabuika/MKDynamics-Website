@@ -1,170 +1,87 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import ButtonDefault from "@/components/Button/ButtonDefault";
-import { ArrowRight, Loader } from "lucide-react";
+import { useState } from 'react';
+import { Paperclip } from 'lucide-react';
+import ButtonDefault from '@/components/Button/ButtonDefault';
+import { Field, FormStatus, Select } from '@/components/site/Field';
+
+type State = 'idle' | 'sending' | 'sent' | 'error';
+
+const empty = { subject: '', name: '', firstname: '', email: '', location: '', type: 'Internship' };
 
 export default function ApplyForm() {
-  const [form, setForm] = useState({
-    subject: "",
-    name: "",
-    firstname: "",
-    email: "",
-    location: "",
-    type: "Internship",
-  });
+  const [form, setForm] = useState(empty);
   const [resume, setResume] = useState<File | null>(null);
-  const [loading, setLoading] = useState(false);
-  const [sent, setSent] = useState(false);
+  const [state, setState] = useState<State>('idle');
+  const [fileKey, setFileKey] = useState(0);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setResume(e.target.files[0]);
-    }
-  };
+  const set = (key: keyof typeof empty) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+    setForm({ ...form, [key]: e.target.value });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
-    setSent(false);
-
+    setState('sending');
     try {
       const formData = new FormData();
       Object.entries(form).forEach(([key, value]) => formData.append(key, value));
-      if (resume) formData.append("resume", resume);
+      if (resume) formData.append('resume', resume);
 
-      const res = await fetch("/api/apply", {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch('/api/apply', { method: 'POST', body: formData });
       const data = await res.json();
-      if (data.success) {
-        setSent(true);
-        setForm({
-          subject: "",
-          name: "",
-          firstname: "",
-          email: "",
-          location: "",
-          type: "Internship",
-        });
-        setResume(null);
-      }
+      if (!data.success) throw new Error('send failed');
+      setState('sent');
+      setForm(empty);
+      setResume(null);
+      setFileKey((k) => k + 1);
     } catch (err) {
       console.error(err);
-    } finally {
-      setLoading(false);
+      setState('error');
     }
   };
 
   return (
-    <div
-      className="w-full flex justify-center items-center bg-white rounded-2xl shadow-lg overflow-hidden"
-      style={{ minHeight: "600px" }}
-    >
-      <form
-        className="w-full max-w-2xl p-8 flex flex-col justify-center space-y-6"
-        onSubmit={handleSubmit}
-        encType="multipart/form-data"
-      >
-        <div className="flex flex-col md:flex-row gap-6">
-          <div className="flex-1">
-            <label className="block mb-2 font-normal text-black">Department</label>
-            <input
-              type="text"
-              placeholder="Department"
-              className="w-full border border-gray-200 rounded-lg px-4 py-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={form.subject}
-              onChange={e => setForm({ ...form, subject: e.target.value })}
-              required
-            />
-          </div>
-          <div className="flex-1">
-            <label className="block mb-2 font-normal text-black">Country</label>
-            <input
-              type="text"
-              placeholder="Country"
-              className="w-full border border-gray-200 rounded-lg px-4 py-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={form.location}
-              onChange={e => setForm({ ...form, location: e.target.value })}
-              required
-            />
-          </div>
-        </div>
-        <div className="flex flex-col md:flex-row gap-6">
-          <div className="flex-1">
-            <label className="block mb-2 font-normal text-black">Name</label>
-            <input
-              type="text"
-              placeholder="Name"
-              className="w-full border border-gray-200 rounded-lg px-4 py-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={form.name}
-              onChange={e => setForm({ ...form, name: e.target.value })}
-              required
-            />
-          </div>
-          <div className="flex-1">
-            <label className="block mb-2 font-normal text-black">Firstname</label>
-            <input
-              type="text"
-              placeholder="Firstname"
-              className="w-full border border-gray-200 rounded-lg px-4 py-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={form.firstname}
-              onChange={e => setForm({ ...form, firstname: e.target.value })}
-              required
-            />
-          </div>
-        </div>
-        <div className="flex flex-col md:flex-row gap-6">
-          <div className="flex-1">
-            <label className="block mb-2 font-normal text-black">Email</label>
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full border border-gray-200 rounded-lg px-4 py-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={form.email}
-              onChange={e => setForm({ ...form, email: e.target.value })}
-              required
-            />
-          </div>
-          <div className="flex-1">
-            <label className="block mb-2 font-normal text-black">Type</label>
-            <select
-              className="w-full border border-gray-200 rounded-lg px-4 py-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
-              value={form.type}
-              onChange={e => setForm({ ...form, type: e.target.value })}
-              required
-            >
-              <option value="Internship">Internship</option>
-              <option value="Role">Role</option>
-              <option value="Student job">Student job</option>
-            </select>
-          </div>
-        </div>
-        <div>
-          <label className="block mb-2 font-normal text-black">Upload your resume/CV</label>
+    <form onSubmit={handleSubmit} encType="multipart/form-data" className="flex flex-col gap-8">
+      <div className="grid gap-8 sm:grid-cols-2">
+        <Field id="firstname" label="First name" autoComplete="given-name" value={form.firstname} onChange={set('firstname')} required />
+        <Field id="name" label="Last name" autoComplete="family-name" value={form.name} onChange={set('name')} required />
+        <Field id="email" type="email" label="Email" autoComplete="email" value={form.email} onChange={set('email')} required />
+        <Field id="location" label="Country" autoComplete="country-name" value={form.location} onChange={set('location')} required />
+        <Field id="subject" label="Department" placeholder="Design, development, security…" value={form.subject} onChange={set('subject')} required />
+        <Select id="type" label="Type" value={form.type} onChange={set('type')} required>
+          <option value="Internship">Internship</option>
+          <option value="Role">Role</option>
+          <option value="Student job">Student job</option>
+        </Select>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <span className="text-sm font-medium">Resume / CV</span>
+        <label
+          htmlFor="resume"
+          className="flex cursor-pointer items-center gap-4 rounded-2xl border-2 border-dashed border-ink-2/50 px-5 py-6 transition-colors duration-150 ease-out hover:border-navy hover:bg-paper-2 focus-within:border-navy"
+        >
+          <Paperclip aria-hidden size={20} className="shrink-0 text-navy" />
+          <span className="min-w-0 flex-1">
+            <span className="block truncate font-medium">{resume ? resume.name : 'Choose a file'}</span>
+            <span className="text-sm text-ink-2">PDF, DOC, DOCX or PNG</span>
+          </span>
           <input
+            key={fileKey}
+            id="resume"
+            name="resume"
             type="file"
             accept=".pdf,.doc,.docx,.png"
-            className="w-full border border-dotted border-gray-200 rounded-lg px-4 py-8 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            onChange={handleFileChange}
+            className="sr-only"
+            onChange={(e) => setResume(e.target.files?.[0] ?? null)}
             required
           />
-        </div>
-        <div className="flex flex-col items-center pt-24">
-          <ButtonDefault
-            label={loading ? "Sending..." : "Send"}
-            icon={
-              loading ? <Loader size={24} color="white" className="animate-spin" /> : <ArrowRight color="white" size={24} />
-            }
-          />
-          {sent && (
-            <p className="mt-4 text-green-700 bg-green-100 border border-green-300 px-4 py-2 rounded-lg">
-              Your application has been sent successfully!
-            </p>
-          )}
-        </div>
-      </form>
-    </div>
+        </label>
+      </div>
+
+      <div className="flex flex-col items-start gap-4">
+        <ButtonDefault type="submit" label={state === 'sending' ? 'Sending…' : 'Send application'} loading={state === 'sending'} />
+        <FormStatus state={state} success="Thank you, your application has been sent." />
+      </div>
+    </form>
   );
 }

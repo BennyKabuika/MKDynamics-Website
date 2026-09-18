@@ -1,0 +1,51 @@
+{
+  "title": "Choose the visual world for MKDynamics",
+  "question": "The roll assigned the Ligne Claire Album. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Ligne Claire Album",
+      "kicker": "THE ROLL",
+      "lineage": "Belgian ligne claire comics (Brussels school: Hergé, Swarte, Ever Meulen posters)",
+      "thesis": "A Belgian IT partner told the Belgian way: one uniform ink line, flat colour, nothing shaded, nothing hidden. Refuses the navy-gradient hero over a stock photo.",
+      "palette": ["#0b0b0f", "#ffffff", "#1d4fd6", "#e23a2e", "#f5b700", "#051654"],
+      "materials": ["uniform 2.5px ink contour", "flat unshaded colour fields", "panel gutters", "boxed lettered captions"],
+      "viewport": "An album page: a wide first panel carries the headline in lettered caps over a flat blue field, a tall photo panel framed in ink, a yellow '50+ projects' panel, and a red caption box as the 'Talk to us' action.",
+      "risk": "Could read playful for a security firm if the lettering or grid loosens; the strict panel grid and restrained captions carry the seriousness.",
+      "raised": [
+        {"from": "manga screentone page", "raise": "Solid black is reserved for the decisive beat: the contact panel alone goes black and breaks the gutter."},
+        {"from": "risograph zine cover", "raise": "Total ink commitment: four flat inks plus paper, no tints, no gradients, no shadows anywhere."},
+        {"from": "night instrument six-pack", "raise": "Each panel owns exactly one truth: one service, one claim, one action per panel."},
+        {"from": "tensegrity column", "raise": "Annotations pinned to their subject on ink leader lines instead of floating labels."}
+      ]
+    },
+    {
+      "id": "model-pick",
+      "label": "Metro Line Diagram",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "STIB/MIVB Brussels metro line maps",
+      "thesis": "Design, development and security as stations on one line: one partner, one ride.",
+      "palette": ["#ffffff", "#111111", "#051654", "#e2231a", "#ffcc00"],
+      "materials": ["thick coloured line strokes", "station roundels", "enamel signage"],
+      "viewport": "One horizontal line crossing the screen with the five services as stations, the headline set as a platform sign.",
+      "risk": "Transit-map metaphors are familiar in agency sites; clear but less memorable."
+    },
+    {"id": "challenger-exposure", "label": "Exposure Record Sheets", "verdict": "declined", "lineage": "darkroom exposure records", "palette": ["#1a1a1a", "#bdbdbd", "#c2185b"], "materials": ["zone ramp", "hatching"], "case": "Fuses poorly: an operator's tool, SME owners do not identify with it.", "kept": "A strict tonal token set: the palette is the only colour vocabulary.", "hero": "https://impeccable.style/worlds/cards/operate-b-exposure-record-zone-sheets-hero.webp"},
+    {"id": "challenger-sixpack", "label": "Night Instrument Six-Pack", "verdict": "declined", "lineage": "aircraft instrument panels", "palette": ["#0a0a0a", "#f0f0f0", "#39ff88", "#ffb300"], "materials": ["luminous dials"], "case": "Fuses weakly: implies live monitoring MKDynamics does not sell.", "kept": "Each element owns one truth.", "hero": "https://impeccable.style/worlds/cards/signals-instruments-night-flight-six-pack-hero.webp"},
+    {"id": "challenger-tensegrity", "label": "Tensegrity Column", "verdict": "declined", "lineage": "kinetic sculpture", "palette": ["#1b1b1b", "#d9d6cf", "#c62828"], "materials": ["carbon rods", "red cord"], "case": "Fuses poorly: abstract, hides what the company does.", "kept": "Annotations on leader lines.", "hero": "https://impeccable.style/worlds/cards/kinetic-sculpture-automata-tensegrity-breathing-column-hero.webp"},
+    {"id": "challenger-cloud", "label": "Iridescent Cloud Edge", "verdict": "declined", "lineage": "atmospheric optics", "palette": ["#ffffff", "#5b6470", "#9be7c4", "#f4a6c1", "#9b7bd4"], "materials": ["hairline spectra"], "case": "Fuses poorly: soft, no link to IT or security.", "kept": "Colour confined, text field stays achromatic.", "hero": "https://impeccable.style/worlds/cards/clouds-storms-auroras-iridescent-cloud-edge-hero.webp"},
+    {"id": "challenger-riso", "label": "Risograph Zine Cover", "verdict": "declined", "lineage": "small-press zines", "palette": ["#ff48b0", "#0078bf", "#f4f1ea"], "materials": ["two spot inks", "misregistration"], "case": "Fuses for designers only; loses SMEs and security trust.", "kept": "Total ink commitment.", "hero": "https://impeccable.style/worlds/cards/posters-covers-sleeves-risograph-zine-cover-hero.webp"},
+    {"id": "challenger-manga", "label": "Manga Screentone Page", "verdict": "declined", "lineage": "weekly manga", "palette": ["#000000", "#ffffff"], "materials": ["screentone", "speed lines"], "case": "Close cousin of the roll, but Belgian visitors read BD, not manga.", "kept": "Solid black reserved for the decisive beat.", "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-manga-screentone-page-hero.webp"}
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "The IT-agency site every competitor ships, executed impeccably.",
+    "palette": ["#ffffff", "#0f172a", "#051654", "#2563eb"],
+    "materials": ["clean grid", "team photography"],
+    "viewport": "Big headline, photo, service cards, CTA, at full craft.",
+    "risk": "Indistinguishable from the competition by design."
+  },
+  "steer": true
+}

@@ -1,17 +1,288 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-body {
-  
-  scroll-behavior: smooth;
-  font-family: 'Poppins', sans-serif;
-}
-/* Cacher la scrollbar de manière universelle */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
+
+:root {
+  --paper: #ffffff;
+  --paper-2: #eef1f8;
+  --ink: #0a1030;
+  --ink-2: #4a5270;
+  --line: #d9deea;
+  --night: #040a24;
+  --navy: #051654;
+  --navy-2: #0c2378;
+  --on-navy: #ffffff;
+  --on-navy-2: #b3bde3;
+  --line-navy: #1f2d68;
+  --gold: #f2b233;
+  --gold-2: #ffc95c;
+  --gold-ink: #8a5a00;
+  --success: #1d7a46;
+  --danger: #b42318;
+
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 
-.hide-scrollbar {
-  -ms-overflow-style: none; /* IE/Edge */
-  scrollbar-width: none; /* Firefox */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    scrollbar-color: var(--on-navy-2) var(--paper);
+  }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-feature-settings: 'ss01', 'tnum' 0;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--navy);
+    color: var(--on-navy);
+  }
+
+  .on-navy ::selection {
+    background: var(--gold);
+    color: var(--night);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--navy);
+    outline-offset: 3px;
+  }
+
+  .on-navy :focus-visible {
+    outline-color: var(--gold);
+  }
+
+  input,
+  textarea,
+  select {
+    caret-color: var(--navy);
+  }
+
+  ::placeholder {
+    color: var(--ink-2);
+    opacity: 0.75;
+  }
+
+  a {
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--paper);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--on-navy-2);
+    border: 3px solid var(--paper);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--ink-2);
+  }
+}
+
+@layer components {
+  .container-mk {
+    width: 100%;
+    max-width: 1320px;
+    margin-inline: auto;
+    padding-inline: 20px;
+  }
+  @media (min-width: 768px) {
+    .container-mk {
+      padding-inline: 40px;
+    }
+  }
+
+  /* Long-form reading pages: services, opportunities */
+  .prose-mk {
+    max-width: 68ch;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--ink-2);
+  }
+  .prose-mk > * + * {
+    margin-top: 1.25rem;
+  }
+  .prose-mk h2 {
+    scroll-margin-top: 96px;
+    margin-top: 4.5rem;
+    font-family: var(--font-display), var(--font-sans), sans-serif;
+    font-size: clamp(1.75rem, 1.2rem + 1.6vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .prose-mk h2 + * {
+    margin-top: 1rem;
+  }
+  .prose-mk h3 {
+    margin-top: 2.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .prose-mk strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .prose-mk ul {
+    padding: 0;
+    list-style: none;
+  }
+  .prose-mk ul > li {
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  .prose-mk ul > li + li {
+    margin-top: 0.5rem;
+  }
+  .prose-mk ul > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    top: 0.62em;
+    border-radius: 999px;
+    background: var(--gold);
+  }
+  .prose-mk ul ul {
+    margin-top: 0.5rem;
+  }
+  .prose-mk .lead {
+    font-size: clamp(1.25rem, 1rem + 0.8vw, 1.5rem);
+    line-height: 1.5;
+    color: var(--ink);
+  }
+}
+
+/* Hero headline: each line rises out of its own mask, once, on load. */
+@keyframes line-rise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+.line-mask > span {
+  display: block;
+  animation: line-rise 1100ms var(--ease-out-expo) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 80ms);
+}
+.fade-rise {
+  animation: fade-rise 700ms var(--ease-out-quart) both;
+  animation-delay: var(--d, 400ms);
+}
+
+/* Orbit: the logo's atom, services riding its rings. Constant motion, so linear. */
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes orbit-counter {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.orbit-spin {
+  animation: orbit-spin 60s linear infinite;
+}
+.orbit-counter {
+  animation: orbit-counter 60s linear infinite;
+}
+.orbit-paused .orbit-spin,
+.orbit-paused .orbit-counter {
+  animation-play-state: paused;
+}
+
+/* Logo marquee: two identical rows, shifted by exactly one row, forever. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.marquee-track {
+  animation: marquee 40s linear infinite;
+}
+@media (hover: hover) and (pointer: fine) {
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+/* Scroll reveal: visible by default, animated only where scroll timelines exist. */
+@supports (animation-timeline: view()) {
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .reveal {
+    animation: reveal both var(--ease-out-quart);
+    animation-timeline: view();
+    animation-range: entry 0% entry 55%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .line-mask > span,
+  .fade-rise,
+  .reveal,
+  .orbit-spin,
+  .orbit-counter,
+  .marquee-track {
+    animation: none;
+  }
 }

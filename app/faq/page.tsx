@@ -1,93 +1,43 @@
-"use client";
-import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/footer";
-import { MovingLetters } from "@/app/animations/MovingLetters";
-import { backgroundcolors } from '@/app/color';
-import { FAQData } from "../function";
-import { useState } from "react";
-import ContactForm from "@/components/contactForm";
-
-// Composant FAQItem
-function FAQItem({
-  question,
-  answer,
-  defaultOpen = false,
-  isLast = false,
-}: {
-  question: string;
-  answer: string;
-  defaultOpen?: boolean;
-  isLast?: boolean;
-}) {
-  const [open, setOpen] = useState(defaultOpen);
-  return (
-    <div className="bg-white border border-gray-100 rounded-xl mb-6">
-      <button
-        className="w-full flex justify-between items-center text-left font-normal focus:outline-none py-4 px-4"
-        onClick={() => setOpen((o) => !o)}
-      >
-        <span>{question}</span>
-        <span className="ml-4 text-2xl select-none">{open ? "−" : "+"}</span>
-      </button>
-      {/* Ligne séparatrice entre question et réponse */}
-      <div className="border-b border-gray-200 mx-4 mb-4" />
-      <div
-        className={`transition-all duration-300 ease-in-out overflow-hidden ${
-          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
-      >
-        <div className="pb-4 px-4 text-gray-600">{answer}</div>
-      </div>
-    </div>
-  );
-}
-
-const leftFAQ = FAQData.slice(0, 4);
-const rightFAQ = FAQData.slice(4, 8);
+import Navbar from '@/components/Navbar/Navbar';
+import Footer from '@/components/footer';
+import PageHero from '@/components/site/PageHero';
+import { FAQData } from '../function';
 
 export default function FAQ() {
   return (
     <>
       <Navbar />
-      <section
-        className="w-full flex flex-col items-center justify-center py-32"
-        style={{ background: backgroundcolors.Tertiary }}
-      >
-        <MovingLetters text="FAQ Page" />
-        <p className="mt-6 text-lg text-center max-w-2xl font-light text-white">
-          At MKDynamics, we have the IT Solutions you need - innovative, secure and built for your challenges
-        </p>
-      </section>
-      <section className="w-full py-20" id="faq" style={{ background: backgroundcolors.Quaternary }}>
-        <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-          {/* Colonne gauche */}
-          <div className="flex flex-col gap-0">
-            {leftFAQ.map((item, idx) => (
-              <FAQItem
-                key={idx}
-                question={item.question}
-                answer={item.answer}
-                defaultOpen={idx === 0}
-                isLast={idx === leftFAQ.length - 1}
-              />
+      <main id="main">
+        <PageHero
+          title={<>Frequently asked <span className="text-gold">questions</span></>}
+          crumbs={[{ href: '/faq', label: 'FAQ' }]}
+          lede={
+            <>
+              Can&apos;t find your answer? Write to{' '}
+              <a href="mailto:contact@mkdynamics.be" className="text-on-navy underline decoration-gold">
+                contact@mkdynamics.be
+              </a>
+              .
+            </>
+          }
+        />
+        <section className="container-mk py-16 md:py-24">
+          <div className="mx-auto max-w-4xl space-y-3">
+            {FAQData.map((item, i) => (
+              <details key={item.id} className="group rounded-2xl bg-paper-2 px-6 transition-colors duration-200 open:bg-navy open:text-on-navy md:px-8" open={i === 0}>
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-6 font-display text-xl font-bold tracking-tight md:text-2xl [&::-webkit-details-marker]:hidden">
+                  {item.question}
+                  <span
+                    aria-hidden
+                    className="relative mt-2 h-4 w-4 shrink-0 before:absolute before:left-0 before:top-1/2 before:h-0.5 before:w-4 before:-translate-y-1/2 before:bg-current after:absolute after:left-1/2 after:top-0 after:h-4 after:w-0.5 after:-translate-x-1/2 after:bg-current after:transition-transform after:duration-200 after:ease-out group-open:after:scale-y-0 motion-reduce:after:transition-none"
+                  />
+                </summary>
+                <p className="max-w-[65ch] pb-8 text-lg leading-relaxed text-on-navy-2">{item.answer}</p>
+              </details>
             ))}
           </div>
-          {/* Colonne droite */}
-          <div className="flex flex-col gap-0">
-            {rightFAQ.map((item, idx) => (
-              <FAQItem
-                key={idx}
-                question={item.question}
-                answer={item.answer}
-                defaultOpen={idx === 0}
-                isLast={idx === rightFAQ.length - 1}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-      <ContactForm/>
+        </section>
+      </main>
       <Footer />
     </>
   );

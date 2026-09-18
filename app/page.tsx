@@ -1,24 +1,24 @@
 import Navbar from '@/components/Navbar/Navbar';
-import Header from '@/components/Header/Header';
-import Main from '@/components/main';
-import OurServices from '@/components/ourServices';
-import CarousselImage from '@/components/carousselImage';
-import OurOpportunity from '@/components/ourOpportunity';
 import Footer from '@/components/footer';
-import { HeroParallaxDemo } from '@/components/showRealisations';
-
+import Hero from '@/components/home/Hero';
+import Logos from '@/components/home/Logos';
+import Statement from '@/components/home/Statement';
+import Orbit from '@/components/home/Orbit';
+import ServiceTiles from '@/components/home/ServiceTiles';
+import Careers from '@/components/home/Careers';
 
 export default function Home() {
   return (
     <>
-      
       <Navbar />
-      <Header />
-      <Main />
-      <OurServices />
-      <CarousselImage />
-      <OurOpportunity />
-      <HeroParallaxDemo />
+      <main id="main">
+        <Hero />
+        <Logos />
+        <Statement />
+        <Orbit />
+        <ServiceTiles />
+        <Careers />
+      </main>
       <Footer />
     </>
   );

@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-18T10:24:22Z",
+  "title": "Design System: MKDynamics",
+  "extensions": {
+    "colorMeta": {
+      "night": {
+        "role": "neutral",
+        "displayName": "Night",
+        "canonical": "#040a24"
+      },
+      "navy": {
+        "role": "primary",
+        "displayName": "MK Navy",
+        "canonical": "#051654"
+      },
+      "gold": {
+        "role": "accent",
+        "displayName": "Logo Gold",
+        "canonical": "#f2b233"
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Home hero and page hero H1 only."
+      },
+      "heading": {
+        "displayName": "Section heading",
+        "purpose": "One per section."
+      }
+    },
+    "shadows": [
+      {
+        "name": "tile-lift",
+        "value": "0 18px 40px -18px rgba(5,22,84,0.35)",
+        "purpose": "Service tile hover."
+      },
+      {
+        "name": "orbit-glow",
+        "value": "0 0 80px 10px rgba(242,178,51,0.18)",
+        "purpose": "Glow behind the logo mark in the orbit."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.19, 1, 0.22, 1)",
+        "purpose": "Headline line rise (1100ms, 90ms stagger) and services preview wipe (700ms)."
+      },
+      {
+        "name": "ease-out-quart",
+        "value": "cubic-bezier(0.165, 0.84, 0.44, 1)",
+        "purpose": "Fade-rise of ledes and images, scroll reveals, underline slides."
+      },
+      {
+        "name": "ui-fast",
+        "value": "150-200ms ease-out",
+        "purpose": "Hover colour changes, button press scale 0.97, menu sheet."
+      },
+      {
+        "name": "orbit",
+        "value": "60s linear infinite",
+        "purpose": "Service nodes circling the atom; paused on hover/focus and reduced motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      }
+    ],
+    "narrative": {
+      "northStar": "An energetic Belgian agency: night-blue immersion, logo gold, one team in orbit.",
+      "rules": [
+        "One gold accent word per headline",
+        "Night/white alternation, gold closing band",
+        "Pill buttons, rounded tiles",
+        "Bricolage for headings, Schibsted for text"
+      ]
+    }
+  }
+}

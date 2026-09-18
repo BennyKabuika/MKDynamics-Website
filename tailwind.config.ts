@@ -1,7 +1,6 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  darkMode: ['class'],
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,27 +8,31 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      keyframes: {
-        'infinite-scroll': {
-          from: { transform: 'translateX(0)' },
-          to: { transform: 'translateX(-100%)' },
-        },
-        scaleIn: {
-          '0%': { transform: 'scale(4)', opacity: '0' },
-          '100%': { transform: 'scale(1)', opacity: '1' },
-        },
-        fadeOut: {
-          '0%': { opacity: '1' },
-          '100%': { opacity: '0' },
-        },
+      colors: {
+        paper: { DEFAULT: 'var(--paper)', 2: 'var(--paper-2)' },
+        ink: { DEFAULT: 'var(--ink)', 2: 'var(--ink-2)' },
+        line: { DEFAULT: 'var(--line)', navy: 'var(--line-navy)' },
+        night: 'var(--night)',
+        navy: { DEFAULT: 'var(--navy)', 2: 'var(--navy-2)' },
+        'on-navy': { DEFAULT: 'var(--on-navy)', 2: 'var(--on-navy-2)' },
+        gold: { DEFAULT: 'var(--gold)', 2: 'var(--gold-2)', ink: 'var(--gold-ink)' },
+        success: 'var(--success)',
+        danger: 'var(--danger)',
       },
-      animation: {
-        'scale-in': 'scaleIn 0.95s ease-out forwards',
-        'fade-out': 'fadeOut 1s ease-out forwards',
-        'infinite-scroll': 'infinite-scroll 25s linear infinite',
+      fontFamily: {
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'var(--font-sans)', 'system-ui', 'sans-serif'],
+      },
+      transitionTimingFunction: {
+        'out-quart': 'cubic-bezier(0.165, 0.84, 0.44, 1)',
+        'out-expo': 'cubic-bezier(0.19, 1, 0.22, 1)',
+        'in-out-cubic': 'cubic-bezier(0.645, 0.045, 0.355, 1)',
+      },
+      letterSpacing: {
+        display: '-0.03em',
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [],
 };
 export default config;

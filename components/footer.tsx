@@ -1,108 +1,99 @@
-'use client';
-
-import React from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { Phone, Mail, MapPin } from 'lucide-react';
-import { backgroundcolors, colors } from '@/app/color';
-import  ButtonDefault  from '../components/Button/ButtonDefault'; 
-import logo from '@/public/logo2.png'; 
-import { useRouter } from 'next/navigation';
+import { ArrowUpRight } from 'lucide-react';
+import { Logo } from './Navbar/Navbar';
+import ButtonDefault from './Button/ButtonDefault';
 
-export default function Footer() {
-    const router = useRouter();
-    
-  const NavigateToContact = () => {
-    router.push('/contact');
-  };
+const sitemap = [
+  { href: '/servicess', label: 'Services' },
+  { href: '/about', label: 'About' },
+  { href: '/Opportunity', label: 'Careers' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/contact', label: 'Contact' },
+];
 
+export default function Footer({ cta = true }: { cta?: boolean }) {
   return (
-    <footer className="text-white py-16 px-8 md:px-16" style={{ backgroundColor: backgroundcolors.Secondary }}>
-      <div className="max-w-7xl mx-auto grid grids-cols-1 md:grid-cols-4 gap-12 mb-12">
+    <footer className="on-navy bg-night text-on-navy">
+      {cta && (
+        <div className="bg-gold text-night [&_:focus-visible]:outline-night">
+          <div className="container-mk grid gap-10 py-20 md:grid-cols-12 md:items-end md:py-28">
+            <h2 className="reveal font-display text-[clamp(2.75rem,1.5rem+4.6vw,6rem)] font-bold leading-[0.95] tracking-display md:col-span-8">
+              Let&apos;s go further, together.
+            </h2>
+            <div className="reveal md:col-span-4 md:justify-self-end">
+              <p className="mb-6 max-w-sm text-lg">
+                Have a project in mind? Tell us what you want to build or protect, and we&apos;ll plan the next step
+                together.
+              </p>
+              <ButtonDefault label="Start a project" href="/contact" variant="dark" />
+            </div>
+          </div>
+        </div>
+      )}
 
-        <div>
-          <Image src={logo} alt="Logo" width={650} height={550} className="mb-12" />
-          <p className="text-sm mb-12 text-gray-500">
-            In today’s fast-moving tech landscape, MKDynamics partners with you to deliver tailored IT
-            solutions that protect, connect, and empower your business.
+      <div className="container-mk grid gap-12 py-16 md:grid-cols-12">
+        <div className="md:col-span-4">
+          <Logo tone="light" />
+          <p className="mt-5 max-w-xs text-on-navy-2">
+            Tailored IT solutions that protect, connect and empower your business.
           </p>
-          <ButtonDefault label="Get In Touch" onClick={(NavigateToContact)} />
         </div>
 
+        <nav aria-label="Footer" className="md:col-span-2">
+          <h3 className="mb-4 text-sm font-semibold text-gold">Site</h3>
+          <ul className="space-y-2.5">
+            {sitemap.map(({ href, label }) => (
+              <li key={href}>
+                <Link href={href} className="text-on-navy-2 transition-colors duration-150 hover:text-on-navy">
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-        <div>
-          <h4 className="text-lg font-semibold mb-12">Get in touch</h4>
-          <div className="mb-4">
-            <a href="tel:+32475440347" className="flex items-center gap-3 hover:underline">
-              <Phone size={20} style={{color : colors.Primary}} />
-              +32 475 44 03 47
-            </a>
-            <p className="text-xs text-gray-500 mt-1">Phone number</p>
-          </div>
-          <div className="border-t border-gray-800 my-4"></div>
-          <div className="mb-4">
-            <a href="mailto:contact@mkdynamics.be" className="flex items-center gap-3 hover:underline">
-              <Mail size={20} style={{color : colors.Primary}} />
-              contact@mkdynamics.be
-            </a>
-            <p className="text-xs text-gray-500 mt-1">Email address</p>
-          </div>
-          <div className="border-t border-gray-800 my-4"></div>
-          <div>
-            <a
-              href="https://www.google.com/maps?q=Assesteenweg+116+A+1740+Ternat"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 hover:underline"
-            >
-              <MapPin size={20} style={{color : colors.Primary}} />
-              Ternat, BE
-            </a>
-            <p className="text-xs text-gray-500 mt-1">Assesteenweg 116   Boîte A 1740 Ternat</p>
-          </div>
-        </div>
-
-
-        <div>
-          <h4 className="text-lg font-semibold mb-12">Quick links</h4>
-          <ul className="space-y-4 text-sm" >
+        <div className="md:col-span-3">
+          <h3 className="mb-4 text-sm font-semibold text-gold">Contact</h3>
+          <ul className="space-y-2.5">
             <li>
-              <Link href="/" className="hover:cursor-pointer" style={{ color: backgroundcolors.Quaternary }}>
-                Home
-              </Link>
+              <a href="mailto:contact@mkdynamics.be" className="hover:underline">
+                contact@mkdynamics.be
+              </a>
             </li>
             <li>
-              <Link href="/about" className="hover:cursor-pointer" style={{ color: backgroundcolors.Quaternary }}>
-                About Us
-              </Link>
+              <a href="tel:+32475440347" className="hover:underline">
+                +32 475 44 03 47
+              </a>
             </li>
             <li>
-              <Link href="/faq" className="hover:cursor-pointer" style={{ color: backgroundcolors.Quaternary }}>
-                FAQ
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:cursor-pointer" style={{ color: backgroundcolors.Quaternary }}>
-                Contact
-              </Link>
+              <a
+                href="https://www.google.com/maps?q=Assesteenweg+116+A+1740+Ternat"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex gap-1 text-on-navy-2 hover:text-on-navy"
+              >
+                Assesteenweg 116 Boîte A
+                <br />
+                1740 Ternat, Belgium
+                <ArrowUpRight aria-hidden size={16} className="mt-1 shrink-0" />
+              </a>
             </li>
           </ul>
         </div>
 
-  
-        <div>
-          <h4 className="text-lg font-semibold mb-12">Office hours</h4>
-          <p className="text-sm text-gray-500">
-            Monday - Friday <br />
-            <span className="font-bold text-white">8 AM - 4 PM</span>
+        <div className="md:col-span-3">
+          <h3 className="mb-4 text-sm font-semibold text-gold">Office hours</h3>
+          <p className="text-on-navy-2">
+            Monday to Friday
+            <br />
+            <span className="text-on-navy">8 AM – 4 PM</span>
           </p>
         </div>
       </div>
 
-      <div className="border-t border-gray-800 pt-6">
-        <p className="text-sm text-left text-gray-300">
-          © MKDYNAMICS 2023 All Rights Reserved
-        </p>
+      <div className="container-mk flex flex-col gap-2 border-t border-line-navy py-6 text-sm text-on-navy-2 sm:flex-row sm:justify-between">
+        <p>© {new Date().getFullYear()} MKDynamics. All rights reserved.</p>
+        <p>Ternat, Belgium</p>
       </div>
     </footer>
   );

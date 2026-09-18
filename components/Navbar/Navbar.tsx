@@ -1,152 +1,129 @@
-'use client'
-import { useState, useRef } from 'react';
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ChevronDown, ArrowRight, Menu, X } from 'lucide-react';
-import { colors, backgroundcolors } from '../../app/color';
+import { usePathname } from 'next/navigation';
+import { Menu, X } from 'lucide-react';
 import ButtonDefault from '../Button/ButtonDefault';
-import { useRouter } from 'next/navigation';
+
+const links = [
+  { href: '/servicess', label: 'Services' },
+  { href: '/about', label: 'About' },
+  { href: '/Opportunity', label: 'Careers' },
+  { href: '/faq', label: 'FAQ' },
+];
+
+export function Logo({ tone = 'ink' }: { tone?: 'ink' | 'light' }) {
+  return (
+    <Link href="/" className="flex items-center gap-2.5" aria-label="MKDynamics home">
+      <Image src="/media/mark.png" alt="" width={36} height={36} priority />
+      <span className={`font-display text-xl font-bold tracking-tight ${tone === 'light' ? 'text-on-navy' : 'text-ink'}`}>
+        MKDynamics
+      </span>
+    </Link>
+  );
+}
 
 export default function Navbar() {
-  const router = useRouter();
-  const [pageMenuOpen, setPageMenuOpen] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  const handleMouseEnter = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setPageMenuOpen(true);
-  };
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-  const handleMouseLeave = () => {
-    timeoutRef.current = setTimeout(() => {
-      setPageMenuOpen(false);
-    }, 200);
-  };
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
-  const NavigateToAbout = () => {
-    router.push('/about');
-  };
-  const NavigateToContact = () => {
-    router.push('/contact');
-  };
-    
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = '';
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  const isActive = (href: string) => pathname === href || pathname?.startsWith(`${href}/`);
 
   return (
-    <nav className="w-full" style={{ background: backgroundcolors.Primary }}>
-      <div className="mx-auto flex items-center justify-between h-32 px-4 max-w-7xl">
-        {/* Logo */}
-        <div className="flex items-center">
-          <Image src="/logo2.png" alt="Logo" width={220} height={220} />
-        </div>
+    <header
+      className={`on-navy fixed inset-x-0 top-0 z-50 border-b text-on-navy transition-[background-color,border-color] duration-200 ease-out ${
+        scrolled || open ? 'border-line-navy bg-night' : 'border-transparent bg-transparent'
+      }`}
+    >
+      <div className="container-mk flex h-[76px] items-center justify-between gap-8">
+        <Logo tone="light" />
 
-        {/* Desktop menu */}
-        <div className="hidden md:flex items-center gap-12 ">
-          {[
-            { href: '/', label: 'Home' },
-            { href: '/about', label: 'About Us' },
-            { href: '/Opportunity', label: 'Opportunity' },
-          ].map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="relative group font-light text-gray-800 transition-colors duration-300"
-            >
-              {label}
-              <span className="absolute bottom-0 left-0 w-full h-px bg-current transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
-            </Link>
-          ))}
-
-          {/* Dropdown Pages */}
-          <div
-            className="relative"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-          >
-            <button
-              className="flex items-center font-light focus:outline-none transition-all duration-300 ease-in-out group"
-              style={{ color: colors.Primary }}
-              type="button"
-            >
-              Page
-              <span
-                className={`ml-1 transition-transform duration-300 ${
-                  pageMenuOpen ? 'rotate-180' : 'rotate-0'
-                }`}
-              >
-                <ChevronDown size={18} />
-              </span>
-            </button>
-            <div
-              className={`
-                absolute left-1/2 -translate-x-1/2 mt-3 w-96 bg-white rounded-lg py-4 px-6 flex flex-col gap-4 z-50
-                transition-all duration-300
-                ${
-                  pageMenuOpen
-                    ? 'opacity-100 scale-100 pointer-events-auto'
-                    : 'opacity-0 scale-95 pointer-events-none'
-                }
-              `}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              {[
-                { href: '/', label: 'Home' },
-                { href: '/about', label: 'About Us' },
-                { href: '/contact', label: 'Contact' },
-                { href: '/faq', label: 'FAQ' },
-                { href: '/servicess', label: 'Service' },
-                { href: '/Opportunity', label: 'Opportunity' },
-                { href: '/resumecv', label: 'Apply now' },
-              ].map(({ href, label }) => (
+        <nav aria-label="Main" className="hidden md:block">
+          <ul className="flex items-center gap-9">
+            {links.map(({ href, label }) => (
+              <li key={href}>
                 <Link
-                  key={href}
                   href={href}
-                  className="font-light text-gray-800 hover:text-primary transition-colors duration-300"
+                  aria-current={isActive(href) ? 'page' : undefined}
+                  className="relative py-2 text-[15px] font-medium text-on-navy-2 transition-colors duration-150 ease-out hover:text-on-navy aria-[current=page]:text-on-navy after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-gold after:transition-transform after:duration-200 after:ease-out-quart hover:after:scale-x-100 aria-[current=page]:after:scale-x-100 motion-reduce:after:transition-none"
                 >
                   {label}
                 </Link>
-              ))}
-            </div>
-          </div>
-        </div>
+              </li>
+            ))}
+          </ul>
+        </nav>
 
         <div className="hidden md:block">
-          <ButtonDefault
-            label="Get Started"
-            onClick={(NavigateToContact)}
-            icon={<ArrowRight color="white" size={20} />}
-          />
+          <ButtonDefault label="Let's talk" href="/contact" className="h-11 !pl-5 !pr-4 text-[15px]" />
         </div>
 
-        <div className="md:hidden">
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-            {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
+        <button
+          type="button"
+          className="-mr-2 flex h-11 w-11 items-center justify-center md:hidden"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          onClick={() => setOpen((o) => !o)}
+        >
+          {open ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
-      {mobileMenuOpen && (
-        <div className="md:hidden px-6 pb-6 flex flex-col gap-4 bg-white">
-          {[
-            { href: '/', label: 'Home' },
-            { href: '/about', label: 'About Us' },
-            { href: '/Opportunity', label: 'Opportunity' },
-            { href: '/contact', label: 'Contact' },
-            { href: '/faq', label: 'FAQ' },
-            { href: '/servicess', label: 'Service' },
-            { href: '/resumecv', label: 'Apply now' },
-          ].map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="font-medium text-gray-800 hover:text-primary transition-colors duration-300"
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
-      )}
-    </nav>
+
+      <div
+        id="mobile-menu"
+        className={`fixed inset-x-0 bottom-0 top-[76px] bg-night transition-[opacity,transform] duration-200 ease-out md:hidden motion-reduce:transition-none ${
+          open ? 'visible translate-y-0 opacity-100' : 'invisible -translate-y-2 opacity-0'
+        }`}
+      >
+        <nav aria-label="Mobile" className="container-mk flex h-full flex-col justify-between pb-10 pt-6">
+          <ul>
+            {[{ href: '/', label: 'Home' }, ...links, { href: '/contact', label: 'Contact' }].map(({ href, label }) => (
+              <li key={href} className="border-b border-line-navy">
+                <Link
+                  href={href}
+                  aria-current={pathname === href ? 'page' : undefined}
+                  className="flex items-center justify-between py-5 font-display text-3xl font-semibold tracking-tight aria-[current=page]:text-gold"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <div className="space-y-1 text-on-navy-2">
+            <a href="mailto:contact@mkdynamics.be" className="block text-lg text-on-navy">
+              contact@mkdynamics.be
+            </a>
+            <a href="tel:+32475440347" className="block">
+              +32 475 44 03 47
+            </a>
+          </div>
+        </nav>
+      </div>
+    </header>
   );
 }

@@ -1,319 +1,121 @@
-"use client";
+import Image from 'next/image';
+import Navbar from '@/components/Navbar/Navbar';
+import Footer from '@/components/footer';
+import PageHero from '@/components/site/PageHero';
+import ButtonDefault from '@/components/Button/ButtonDefault';
 
-import Navbar from "@/components/Navbar/Navbar";
-import {MovingLetters} from "@/app/animations/MovingLetters";
-import ButtonDefault from "@/components/Button/ButtonDefault";
-import CarousselImage from "@/components/carousselImage";
-import { backgroundcolors, colors } from '@/app/color';
-import Footer from "@/components/footer";
-import { Timeline } from "../animations/timeline";
-import { useRouter } from "next/navigation";
-import dynamic from "next/dynamic";
-
-
-
-const World = dynamic(() => import("../animations/globe").then(mod => mod.World), {
-  ssr: false,
-});
-
-const globeConfig = {
-  globeColor: "#051654",
-  emissive: "#051654",
-  emissiveIntensity: 0.1,
-  shininess: 0.9,
-};
-const globeData = [
+const values = [
   {
-    order: 1,
-    startLat: 48.85,
-    startLng: 2.35,
-    endLat: 40.71,
-    endLng: -74.01,
-    arcAlt: 0.2,
-    color: "#87CEEB"
+    title: 'Motivation',
+    text: 'Enthusiasm and determination fuel progress. Each project is approached with genuine emotional and intellectual commitment, because only true motivation can overcome challenges and push us to achieve excellence.',
   },
   {
-    order: 2,
-    startLat: 50.85,
-    startLng: 6.35,
-    endLat: 35.68,
-    endLng: 139.76,
-    arcAlt: 0.2,
-    color: "#87CEEB"
+    title: 'Knowledge',
+    text: 'We continuously invest in learning, technology watch and skill development, so our solutions are rooted in a solid understanding of your challenges.',
   },
   {
-    order: 3,
-    startLat: 51.51,   // London
-    startLng: -0.13,
-    endLat: -33.87,    // Sydney
-    endLng: 151.21,
-    arcAlt: 0.2,
-    color: "#87CEEB"
+    title: 'Dedication',
+    text: 'More than a service, we offer a genuine partnership where our client’s success is our own goal, reflected in our rigor, availability and perseverance.',
   },
   {
-    order: 4,
-    startLat: 40.41,   // Madrid
-    startLng: -3.70,
-    endLat: 55.75,     // Moscow
-    endLng: 37.62,
-    arcAlt: 0.2,
-    color: "#87CEEB"
+    title: 'Youthful energy',
+    text: 'A bold mindset focused on the future. Youth is not an age — it’s a mindset driven by curiosity, creativity and agility in an ever-evolving world.',
   },
   {
-    order: 5,
-    startLat: 52.52,   // Berlin
-    startLng: 13.40,
-    endLat: -23.55,    // São Paulo
-    endLng: -46.63,
-    arcAlt: 0.2,
-    color: "#87CEEB"
+    title: 'Network',
+    text: 'Our network of partners, clients and experts is a resource we mobilize to co-create high-quality solutions. Great achievements are always collective.',
   },
   {
-    order: 6,
-    startLat: 34.05,   // Los Angeles
-    startLng: -118.24,
-    endLat: 1.29,      // Singapore
-    endLng: 103.85,
-    arcAlt: 0.2,
-    color: "#87CEEB"
+    title: 'Agility',
+    text: 'Flexible and adaptive working methods that meet challenges while staying strategically focused, in how we think, plan and communicate.',
   },
   {
-    order: 7,
-    startLat: 19.43,   // Mexico City
-    startLng: -99.13,
-    endLat: 55.86,     // Beijing
-    endLng: 4.35,
-    arcAlt: 0.2,
-    color: "#87CEEB"
+    title: 'Mission',
+    text: 'Every solution we deliver is designed to genuinely improve performance, visibility and long-term success. We strive to inspire, transform and build sustainable value.',
   },
   {
-    order: 8,
-    startLat: 28.61,   // New Delhi
-    startLng: 77.20,
-    endLat: 59.93,     // Saint Petersburg
-    endLng: 30.33,
-    arcAlt: 0.2,
-    color: "#87CEEB"
+    title: 'Integrity',
+    text: 'Ethics, transparency and responsibility sit at the heart of our relationships. Trust is not claimed — it is earned through honesty, reliability and accountability.',
   },
   {
-    order: 9,
-    startLat: -26.20,  // Johannesburg
-    startLng: 28.04,
-    endLat: 35.68,     // Tokyo
-    endLng: 139.76,
-    arcAlt: 0.2,
-    color: "#87CEEB"
+    title: 'Creativity',
+    text: 'Fresh perspectives, bold ideas and tailor-made solutions. We reject one-size-fits-all approaches in favor of exploration and innovation.',
   },
   {
-    order: 10,
-    startLat: -33.92,  // Cape Town
-    startLng: 18.42,
-    endLat: 37.77,     // San Francisco
-    endLng: -122.42,
-    arcAlt: 0.2,
-    color: "#87CEEB"
-  },
-  {
-    order: 11, // Rome → Nairobi (Europe → Afrique)
-    startLat: 41.90, startLng: 12.50,
-    endLat: -1.29, endLng: 36.82,
-    arcAlt: 0.2, color: "#87CEEB"
-  },
-  {
-    order: 12, // Ottawa → Le Caire (Amérique du Nord → Afrique)
-    startLat: 45.42, startLng: -75.69,
-    endLat: 30.04, endLng: 31.24,
-    arcAlt: 0.2, color: "#87CEEB"
+    title: 'Synergy',
+    text: 'Aligning skills, visions and energy to go further, faster and stronger, hand in hand with clients and teams.',
   },
 ];
-
-const timelineData = [
-  {
-    title: "Motivation",
-    content: (
-      <p>
-        Motivation is the driving force behind every member of our team. At MKDYNAMICS, we believe
-        that enthusiasm and determination fuel progress. Each project is approached with genuine
-        emotional and intellectual commitment, because only true motivation can overcome challenges
-        and push us to achieve excellence.
-      </p>
-    ),
-    image: "/image12.jpeg",
-  },
-  {
-    title: "Knowledge",
-    content: (
-      <p>
-        Knowledge is the foundation of our expertise. We continuously invest in learning,
-        technological watch, and skill development. By cultivating deep, up-to-date knowledge, we
-        provide our clients with relevant and innovative solutions rooted in a solid understanding
-        of their challenges.
-      </p>
-    ),
-    image: "/image8.jpeg",
-  },
-  {
-    title: "Dedication",
-    content: (
-      <p>
-        Our dedication is shown through full commitment to every project. More than a service, we
-        offer a genuine partnership where our client’s success is our own goal. This loyalty is
-        reflected in our rigor, availability, and constant perseverance throughout the
-        collaboration.
-      </p>
-    ),
-    image: "/image9.jpeg",
-  },
-  {
-    title: "Youthful Energy",
-    content: (
-      <p>
-        We foster a youthful, bold mindset focused on the future. This energy pushes us to challenge
-        the status quo, explore new ideas, and stay dynamic. At MKDYNAMICS, youth is not an age —
-        it’s a mindset driven by curiosity, creativity, and agility in an ever-evolving world.
-      </p>
-    ),
-    image: "/image10.jpeg",
-  },
-  {
-    title: "Network",
-    content: (
-      <p>
-        We believe in the power of connections. Our strong network of partners, clients, and experts
-        is a valuable resource we mobilize to co-create high-quality solutions. Collaboration,
-        listening, and trust are central to our approach, because we know that great achievements
-        are always collective.
-      </p>
-    ),
-    image: "/image7.jpeg",
-  },
-  {
-    title: "Agility",
-    content: (
-      <p>
-        In a fast-changing world, agility is a necessity. We&apos;ve adopted flexible and adaptive
-        working methods to meet challenges while staying strategically focused. Our agility is
-        reflected not just in our processes, but in how we think, plan, and communicate.
-      </p>
-    ),
-    image: "/image11.jpeg",
-  },
-  {
-    title: "Mission",
-    content: (
-      <p>
-        Our mission is clear: to create lasting, positive impact for our clients. Every solution we
-        deliver is designed to genuinely improve performance, visibility, and long-term success. We
-        don’t just aim to satisfy — we strive to inspire, transform, and build sustainable value.
-      </p>
-    ),
-    image: "/image12.jpeg",
-  },
-  {
-    title: "Integrity",
-    content: (
-      <p>
-        Integrity guides every action we take. We place ethics, transparency, and responsibility at
-        the heart of our professional relationships. At MKDYNAMICS, trust is not claimed — it is
-        earned through honesty, reliability, and accountability.
-      </p>
-    ),
-    image: "/image8.jpeg",
-  },
-  {
-    title: "Creativity",
-    content: (
-      <p>
-        Creativity is our core strength. We tackle every challenge with fresh perspectives, bold
-        ideas, and tailor-made solutions. We reject one-size-fits-all approaches in favor of
-        exploration and innovation. That’s how we create truly distinctive value.
-      </p>
-    ),
-    image: "/image9.jpeg",
-  },
-  {
-    title: "Synergy",
-    content: (
-      <p>
-        We believe the whole is greater than the sum of its parts. Synergy is the art of aligning
-        skills, visions, and energy to go further, faster, and stronger. By working hand in hand
-        with clients and teams, we build a high-performance, trust-based ecosystem.
-      </p>
-    ),
-    image: "/image10.jpeg",
-  },
-];
-
 
 export default function About() {
-
-  const router = useRouter();
-  const navigateToServices = () => {
-    router.push('/servicess');
-  };
   return (
     <>
       <Navbar />
+      <main id="main">
+        <PageHero
+          title={<>Trusted IT for apps, websites, design and <span className="text-gold">security</span>.</>}
+          crumbs={[{ href: '/about', label: 'About' }]}
+          lede="At MKDynamics, we have the IT solutions you need: innovative, secure and built for your challenges."
+          image="/media/image12.jpg"
+          imageAlt="The MKDynamics team gathered around a table"
+        />
 
-      
-      <section
-        className="w-full flex flex-col items-center justify-center py-32"
-        style={{ background: backgroundcolors.Tertiary }}
-      >
-        <MovingLetters text="About Company" />
-        <p className="mt-6 text-lg text-center max-w-2xl font-light text-white">
-          At MKDynamics, we have the IT Solutions you need - innovative, secure and built for your challenges
-        </p>
-      </section>
-
-      
-      <section className="w-full flex flex-col md:flex-row items-stretch justify-center py-20 gap-8" style={{ background: backgroundcolors.Quaternary }}>
-        <div className="flex-1 flex flex-col items-start justify-center px-8">
-          <span className="text-sm font-normal mb-12" style={{color : colors.Primary}}>.ABOUT OUR COMPANY</span>
-          <h2 className="text-5xl md:text-6xl font-normal mb-6">
-            Trusted IT Solutions for apps, websites, design and security
-          </h2>
-          <div className="w-full flex justify-center">
-            <div
-              style={{
-                width: "100%",
-                maxWidth: 500,
-                aspectRatio: "1/1",
-                minHeight: 250,
-              }}
-            >
-              <World globeConfig={globeConfig} data={globeData} />
+        <section className="container-mk grid gap-12 py-20 md:grid-cols-12 md:py-28">
+          <p className="reveal font-display text-[clamp(1.75rem,1.2rem+2vw,3rem)] font-bold leading-[1.1] tracking-display md:col-span-9">
+            In today’s fast-moving tech landscape, MKDynamics partners with you to deliver tailored IT solutions that
+            protect, connect and empower your business.
+          </p>
+          <div className="grid gap-10 sm:grid-cols-2 md:col-span-12 md:grid-cols-12">
+            <div className="reveal rounded-3xl bg-paper-2 p-8 md:col-span-6">
+              <h2 className="font-display text-2xl font-bold tracking-tight">Our mission</h2>
+              <p className="mt-3 text-lg text-ink-2">
+                To provide comprehensive digital solutions — from web and app development to design and cybersecurity —
+                empowering businesses to thrive with innovative, all-in-one IT services.
+              </p>
+            </div>
+            <div className="reveal rounded-3xl bg-paper-2 p-8 md:col-span-6">
+              <h2 className="font-display text-2xl font-bold tracking-tight">Our vision</h2>
+              <p className="mt-3 text-lg text-ink-2">
+                To be a leading digital partner recognized for delivering innovative, secure, and comprehensive IT
+                solutions that empower businesses worldwide to grow confidently in a fast-evolving digital landscape.
+              </p>
             </div>
           </div>
-        </div>
-        <div className="flex-1 flex flex-col justify-start px-8 gap-8">
-          <div>
-            <h3 className="text-2xl font-normal mb-2">Our mission</h3>
-            <p className="text-gray-400">
-              Our mission at MKDYNAMICS is to provide comprehensive digital solutions — from web and app development to design and cybersecurity — empowering businesses to thrive with innovative, all-in-one IT services.
-            </p>
+        </section>
+
+        <section className="on-navy bg-night text-on-navy">
+          <div className="container-mk py-20 md:py-28">
+            <div className="mb-14 grid gap-8 md:grid-cols-12 md:items-end">
+              <h2 className="font-display text-[clamp(2.25rem,1.4rem+3vw,4rem)] font-bold leading-none tracking-display md:col-span-6">
+                What we <span className="text-gold">stand for</span>
+              </h2>
+              <div className="md:col-span-5 md:col-start-8">
+                <p className="text-lg text-on-navy-2">Ten values that shape how we work with clients, partners and each other.</p>
+              </div>
+            </div>
+            <dl className="grid gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
+              {values.map((v) => (
+                <div key={v.title} className="reveal border-t border-line-navy py-8">
+                  <dt className="font-display text-xl font-bold tracking-tight text-gold">{v.title}</dt>
+                  <dd className="mt-2 text-on-navy-2">{v.text}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-          <div>
-            <h3 className="text-2xl font-normal mb-2">Our vision</h3>
-            <p className="text-gray-400">
-              To be a leading digital partner recognized for delivering innovative, secure, and comprehensive IT solutions that empower businesses worldwide to grow confidently in a fast-evolving digital landscape.
-            </p>
+        </section>
+
+        <section className="container-mk grid gap-10 py-20 md:grid-cols-12 md:items-center md:py-28">
+          <div className="reveal relative aspect-[4/3] overflow-hidden rounded-3xl md:col-span-7">
+            <Image src="/media/image13.jpg" alt="Two colleagues celebrating a result" fill sizes="(min-width: 768px) 58vw, 100vw" className="object-cover" />
           </div>
-          <div className="mt-4">
-            <ButtonDefault label="Our Services" onClick={(navigateToServices)} />
+          <div className="reveal md:col-span-4 md:col-start-9">
+            <p className="font-display text-7xl font-bold tabular-nums tracking-display text-navy">50+</p>
+            <p className="mt-2 text-lg text-ink-2">successful projects and counting, across web, mobile, design and security.</p>
+            <ButtonDefault label="Our services" href="/servicess" className="mt-8" />
           </div>
-        </div>
-      </section>
-      
-      <CarousselImage />
-      <section className="w-full py-16 bg-white" style={{ background: backgroundcolors.Quaternary }}>
-        <h2 className="text-sm font-normal mb-6 text-center" style={{color : colors.Primary}}>
-          .OUR VALUES
-        </h2>
-        <Timeline data={timelineData} />
-      </section>
+        </section>
+      </main>
       <Footer />
-      
     </>
   );
 }
