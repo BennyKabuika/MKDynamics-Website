@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/footer';
 import PageHero from '@/components/site/PageHero';
+import Hl from '@/components/site/Hl';
 import ApplyForm from '@/components/applyForm';
 
 export default function ResumeCV() {
@@ -9,7 +10,7 @@ export default function ResumeCV() {
       <Navbar />
       <main id="main">
         <PageHero
-          title={<>Apply to <span className="text-gold">MKDynamics</span>.</>}
+          title={<>Apply to <Hl on="light">MKDynamics</Hl>.</>}
           crumbs={[
             { href: '/Opportunity', label: 'Careers' },
             { href: '/resumecv', label: 'Apply' },

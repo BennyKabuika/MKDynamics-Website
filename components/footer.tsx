@@ -13,19 +13,19 @@ const sitemap = [
 
 export default function Footer({ cta = true }: { cta?: boolean }) {
   return (
-    <footer className="on-navy bg-night text-on-navy">
+    <footer className="on-navy bg-navy text-on-navy">
       {cta && (
-        <div className="bg-gold text-night [&_:focus-visible]:outline-night">
+        <div className="border-b border-line-navy">
           <div className="container-mk grid gap-10 py-20 md:grid-cols-12 md:items-end md:py-28">
             <h2 className="reveal font-display text-[clamp(2.75rem,1.5rem+4.6vw,6rem)] font-bold leading-[0.95] tracking-display md:col-span-8">
-              Let&apos;s go further, together.
+              Let&apos;s go further, <span className="text-gold">together</span>.
             </h2>
             <div className="reveal md:col-span-4 md:justify-self-end">
-              <p className="mb-6 max-w-sm text-lg">
+              <p className="mb-6 max-w-sm text-lg text-on-navy-2">
                 Have a project in mind? Tell us what you want to build or protect, and we&apos;ll plan the next step
                 together.
               </p>
-              <ButtonDefault label="Start a project" href="/contact" variant="dark" />
+              <ButtonDefault label="Start a project" href="/contact" />
             </div>
           </div>
         </div>

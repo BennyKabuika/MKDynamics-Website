@@ -52,15 +52,21 @@ export default function Navbar() {
   }, [open]);
 
   const isActive = (href: string) => pathname === href || pathname?.startsWith(`${href}/`);
+  // Only the home hero is dark: float over it, go white once scrolled and everywhere else.
+  const dark = open || (pathname === '/' && !scrolled);
 
   return (
     <header
-      className={`on-navy fixed inset-x-0 top-0 z-50 border-b text-on-navy transition-[background-color,border-color] duration-200 ease-out ${
-        scrolled || open ? 'border-line-navy bg-night' : 'border-transparent bg-transparent'
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,color] duration-200 ease-out ${
+        open
+          ? 'on-navy border-line-navy bg-night text-on-navy'
+          : dark
+            ? 'on-navy border-transparent bg-transparent text-on-navy'
+            : `bg-paper text-ink ${scrolled ? 'border-line' : 'border-transparent'}`
       }`}
     >
       <div className="container-mk flex h-[76px] items-center justify-between gap-8">
-        <Logo tone="light" />
+        <Logo tone={dark ? 'light' : 'ink'} />
 
         <nav aria-label="Main" className="hidden md:block">
           <ul className="flex items-center gap-9">
@@ -69,7 +75,11 @@ export default function Navbar() {
                 <Link
                   href={href}
                   aria-current={isActive(href) ? 'page' : undefined}
-                  className="relative py-2 text-[15px] font-medium text-on-navy-2 transition-colors duration-150 ease-out hover:text-on-navy aria-[current=page]:text-on-navy after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-gold after:transition-transform after:duration-200 after:ease-out-quart hover:after:scale-x-100 aria-[current=page]:after:scale-x-100 motion-reduce:after:transition-none"
+                  className={`relative py-2 text-[15px] font-medium transition-colors duration-150 ease-out ${
+                    dark
+                      ? 'text-on-navy-2 hover:text-on-navy aria-[current=page]:text-on-navy'
+                      : 'text-ink-2 hover:text-ink aria-[current=page]:text-ink'
+                  } after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:origin-left after:scale-x-0 after:rounded-full after:bg-gold after:transition-transform after:duration-200 after:ease-out-quart hover:after:scale-x-100 aria-[current=page]:after:scale-x-100 motion-reduce:after:transition-none`}
                 >
                   {label}
                 </Link>

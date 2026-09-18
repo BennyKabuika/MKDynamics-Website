@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/footer';
 import PageHero from '@/components/site/PageHero';
+import Hl from '@/components/site/Hl';
 import { FAQData } from '../function';
 
 export default function FAQ() {
@@ -9,12 +10,12 @@ export default function FAQ() {
       <Navbar />
       <main id="main">
         <PageHero
-          title={<>Frequently asked <span className="text-gold">questions</span></>}
+          title={<>Frequently asked <Hl on="light">questions</Hl></>}
           crumbs={[{ href: '/faq', label: 'FAQ' }]}
           lede={
             <>
               Can&apos;t find your answer? Write to{' '}
-              <a href="mailto:contact@mkdynamics.be" className="text-on-navy underline decoration-gold">
+              <a href="mailto:contact@mkdynamics.be" className="text-ink underline decoration-gold decoration-2">
                 contact@mkdynamics.be
               </a>
               .

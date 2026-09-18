@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/footer';
 import PageHero from '@/components/site/PageHero';
+import Hl from '@/components/site/Hl';
 import ButtonDefault from '@/components/Button/ButtonDefault';
 
 const values = [
@@ -53,7 +54,7 @@ export default function About() {
       <Navbar />
       <main id="main">
         <PageHero
-          title={<>Trusted IT for apps, websites, design and <span className="text-gold">security</span>.</>}
+          title={<>Trusted IT for apps, websites, design and <Hl on="light">security</Hl>.</>}
           crumbs={[{ href: '/about', label: 'About' }]}
           lede="At MKDynamics, we have the IT solutions you need: innovative, secure and built for your challenges."
           image="/media/image12.jpg"
@@ -66,14 +67,14 @@ export default function About() {
             protect, connect and empower your business.
           </p>
           <div className="grid gap-10 sm:grid-cols-2 md:col-span-12 md:grid-cols-12">
-            <div className="reveal rounded-3xl bg-paper-2 p-8 md:col-span-6">
+            <div className="reveal border-t-2 border-ink pt-6 md:col-span-6">
               <h2 className="font-display text-2xl font-bold tracking-tight">Our mission</h2>
               <p className="mt-3 text-lg text-ink-2">
                 To provide comprehensive digital solutions — from web and app development to design and cybersecurity —
                 empowering businesses to thrive with innovative, all-in-one IT services.
               </p>
             </div>
-            <div className="reveal rounded-3xl bg-paper-2 p-8 md:col-span-6">
+            <div className="reveal border-t-2 border-ink pt-6 md:col-span-6">
               <h2 className="font-display text-2xl font-bold tracking-tight">Our vision</h2>
               <p className="mt-3 text-lg text-ink-2">
                 To be a leading digital partner recognized for delivering innovative, secure, and comprehensive IT
@@ -83,21 +84,21 @@ export default function About() {
           </div>
         </section>
 
-        <section className="on-navy bg-night text-on-navy">
+        <section className="bg-paper-2">
           <div className="container-mk py-20 md:py-28">
             <div className="mb-14 grid gap-8 md:grid-cols-12 md:items-end">
               <h2 className="font-display text-[clamp(2.25rem,1.4rem+3vw,4rem)] font-bold leading-none tracking-display md:col-span-6">
-                What we <span className="text-gold">stand for</span>
+                What we <Hl on="light">stand for</Hl>
               </h2>
               <div className="md:col-span-5 md:col-start-8">
-                <p className="text-lg text-on-navy-2">Ten values that shape how we work with clients, partners and each other.</p>
+                <p className="text-lg text-ink-2">Ten values that shape how we work with clients, partners and each other.</p>
               </div>
             </div>
             <dl className="grid gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
               {values.map((v) => (
-                <div key={v.title} className="reveal border-t border-line-navy py-8">
-                  <dt className="font-display text-xl font-bold tracking-tight text-gold">{v.title}</dt>
-                  <dd className="mt-2 text-on-navy-2">{v.text}</dd>
+                <div key={v.title} className="reveal border-t border-line py-8">
+                  <dt className="font-display text-xl font-bold tracking-tight">{v.title}</dt>
+                  <dd className="mt-2 text-ink-2">{v.text}</dd>
                 </div>
               ))}
             </dl>

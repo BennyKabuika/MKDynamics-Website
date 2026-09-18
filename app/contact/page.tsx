@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/footer';
 import PageHero from '@/components/site/PageHero';
+import Hl from '@/components/site/Hl';
 import ContactForm from '@/components/contactForm';
 
 const details = [
@@ -20,7 +21,7 @@ export default function Contact() {
       <Navbar />
       <main id="main">
         <PageHero
-          title={<>Let&apos;s talk about <span className="text-gold">your project</span>.</>}
+          title={<>Let&apos;s talk about <Hl on="light">your project</Hl>.</>}
           crumbs={[{ href: '/contact', label: 'Contact' }]}
           lede="Innovative, secure and built for your challenges. Tell us where you are and where you want to go."
         />

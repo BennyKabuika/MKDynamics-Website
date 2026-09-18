@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar/Navbar';
 import Footer from '@/components/footer';
 import PageHero from '@/components/site/PageHero';
+import Hl from '@/components/site/Hl';
 import { RolesList } from '@/components/home/Careers';
 import ButtonDefault from '@/components/Button/ButtonDefault';
 
@@ -10,7 +11,7 @@ export default function OpportunityPage() {
       <Navbar />
       <main id="main">
         <PageHero
-          title={<>Grow with <span className="text-gold">MKDynamics</span>.</>}
+          title={<>Grow with <Hl on="light">MKDynamics</Hl>.</>}
           image="/media/image9.jpg"
           crumbs={[{ href: '/Opportunity', label: 'Careers' }]}
           lede="Talent can come from anywhere. We offer internships, student jobs and roles to students, self-taught developers and career changers."

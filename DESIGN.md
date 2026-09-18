@@ -1,6 +1,6 @@
 ---
 name: MKDynamics
-description: Energetic Belgian agency — night-blue immersive sections, logo gold accents, big Bricolage headlines, rounded tiles.
+description: Light, confident Belgian agency — white-led pages, one immersive night hero, logo gold accents, Bricolage headlines, rounded tiles.
 colors:
   night: "#040a24"
   navy: "#051654"
@@ -128,7 +128,7 @@ components:
 
 ## Overview
 
-A confident, human Belgian agency rather than a corporate consultancy. Pages open on immersive night-blue heroes (full-bleed photo under a night gradient), alternate with bright white sections, and close on a gold call-to-action band before a night footer. Gold from the atom logo is the energy: accent words in headlines, primary buttons, icons. The signature is the logo's atom brought to life: five service nodes orbiting the mark.
+A mix of the calm first build and the energetic second one. The site is mostly white: inner pages open on a white header (breadcrumb, big title with a gold-marked word, rounded photo below). Only the home hero is immersive (full-bleed photo under a night gradient). Night/navy is reserved for the orbit section, the careers card, sidebar CTAs and the navy footer with its closing CTA. Gold from the atom logo is the energy: accent words in headlines, primary buttons, icons. The signature is the logo's atom brought to life: five service nodes orbiting the mark.
 
 ## Colors
 
@@ -142,7 +142,7 @@ Bricolage Grotesque (bold, tight) for every heading, the wordmark and big number
 
 ## Layout
 
-12-column grid in a 1320px container, 20/40px gutters, ~112px section rhythm. The fixed header floats transparent over the hero and turns night on scroll, so every page starts with a dark hero. Reading pages pair a sticky aside (table of contents, meta card, navy CTA card) with prose.
+12-column grid in a 1320px container, 20/40px gutters, ~112px section rhythm. The fixed header floats transparent over the home hero only; everywhere else (and on the home page once scrolled) it is white with a hairline. Reading pages pair a sticky aside (table of contents, meta card, navy CTA card) with prose.
 
 ## Elevation & Depth
 
@@ -164,7 +164,7 @@ Generous rounding: tiles 24px, feature cards 32px, inputs 12px, icon badges 16px
 ## Do's and Don'ts
 
 - Do give every headline one gold accent word (gold text on dark, gold marker on light).
-- Do alternate night and white sections, and end every client-facing page on the gold band.
+- Do keep pages white-led; night is for the home hero, the orbit, the careers card and the navy footer CTA.
 - Do keep motion orchestrated: headline line rise on load, orbit, scroll reveals; honour reduced motion.
 - Don't put gold text on white, or use Tailwind opacity modifiers on the CSS-variable colours (they silently fail).
 - Don't add eyebrow labels, gradient text, glassmorphism or hard offset shadows.
